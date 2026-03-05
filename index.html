@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TweetPreview – Social Media Post Preview Tool | Twitter, Facebook & More</title>
+
+  <!-- Primary SEO Meta -->
+  <meta name="description" content="Preview how your Twitter, Facebook, LinkedIn, and Instagram posts look before publishing. Free social media post preview tool with real-time rendering." />
+  <meta name="keywords" content="tweet preview, twitter post preview, social media preview, facebook post preview, linkedin preview, instagram preview, social media tool" />
+  <meta name="author" content="TweetPreview" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tweetpreview.github.io/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tweetpreview.github.io/" />
+  <meta property="og:title" content="TweetPreview – Social Media Post Preview Tool" />
+  <meta property="og:description" content="Preview how your Twitter, Facebook, LinkedIn, and Instagram posts look before publishing. 100% free, no login required." />
+  <meta property="og:image" content="https://tweetpreview.github.io/assets/og-image.png" />
+  <meta property="og:site_name" content="TweetPreview" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@tweetpreview" />
+  <meta name="twitter:title" content="TweetPreview – Social Media Post Preview Tool" />
+  <meta name="twitter:description" content="See exactly how your tweets & posts will look before you hit publish. Free tool, no login needed." />
+  <meta name="twitter:image" content="https://tweetpreview.github.io/assets/og-image.png" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tweetpreview.github.io/#website",
+        "url": "https://tweetpreview.github.io/",
+        "name": "TweetPreview",
+        "description": "Free social media post preview tool for Twitter, Facebook, LinkedIn, and more.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://tweetpreview.github.io/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://tweetpreview.github.io/#app",
+        "name": "TweetPreview",
+        "url": "https://tweetpreview.github.io/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Preview social media posts in real time before publishing.",
+        "featureList": ["Twitter preview", "Facebook preview", "LinkedIn preview", "Instagram preview", "Real-time rendering"]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://tweetpreview.github.io/#org",
+        "name": "TweetPreview",
+        "url": "https://tweetpreview.github.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://tweetpreview.github.io/assets/logo.svg"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is TweetPreview free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, TweetPreview is completely free. No account or login required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which platforms does TweetPreview support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "TweetPreview supports Twitter/X, Facebook, LinkedIn, Instagram, and more social platforms."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does TweetPreview store my data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. All previews are generated client-side in your browser. We never store your post content."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div id="header-root"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home" aria-label="Hero – Twitter Post Preview">
+    <div class="hero__bg">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+      <div class="hero__grid"></div>
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <div class="hero__badge">
+          <span class="pulse-dot"></span>
+          Free · No Login · Instant Preview
+        </div>
+        <h1 class="hero__title">
+          See Your <em>Tweet</em><br/>Before You Post It
+        </h1>
+        <p class="hero__sub">
+          Craft the perfect post. Preview how it looks on Twitter/X, Facebook, LinkedIn & more — live, in your browser, instantly.
+        </p>
+        <div class="hero__cta">
+          <a href="#preview-tool" class="btn btn--primary">Try It Free</a>
+          <a href="#tools" class="btn btn--ghost">Explore Tools ↓</a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat"><strong>2M+</strong><span>Previews generated</span></div>
+          <div class="stat"><strong>4</strong><span>Platforms supported</span></div>
+          <div class="stat"><strong>0</strong><span>Login required</span></div>
+        </div>
+      </div>
+      <div class="hero__demo" id="hero-preview-root"></div>
+    </div>
+    <div class="hero__scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- PREVIEW TOOL SECTION -->
+  <section class="section section--dark" id="preview-tool" aria-label="Twitter Post Preview Tool">
+    <div class="container">
+      <div class="section-label">Live Preview Tool</div>
+      <h2 class="section-title">Twitter / X Post Preview</h2>
+      <p class="section-sub">Type your tweet below and watch it render in real time — exactly as it appears on Twitter.</p>
+      <div id="twitter-tool-root"></div>
+    </div>
+  </section>
+
+  <!-- TOOLS CARDS SECTION -->
+  <section class="section" id="tools" aria-label="All Social Media Preview Tools">
+    <div class="container">
+      <div class="section-label">All Platforms</div>
+      <h2 class="section-title">Social Media Preview Tools</h2>
+      <p class="section-sub">One toolkit for every platform. Preview posts exactly as your audience will see them.</p>
+      <div id="tools-cards-root"></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section--dark" id="how" aria-label="How TweetPreview works">
+    <div class="container">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-sub">Three steps between you and the perfect post.</p>
+      <div id="how-it-works-root"></div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="section" id="features" aria-label="TweetPreview Features">
+    <div class="container">
+      <div class="section-label">Why TweetPreview</div>
+      <h2 class="section-title">Everything You Need</h2>
+      <p class="section-sub">Powerful features that help creators, marketers, and brands post with confidence.</p>
+      <div id="features-root"></div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="section section--dark" id="faq" aria-label="Frequently Asked Questions">
+    <div class="container">
+      <div class="section-label">Got Questions?</div>
+      <h2 class="section-title">FAQ</h2>
+      <div id="faq-root"></div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner" aria-label="Call to action">
+    <div class="cta-banner__bg">
+      <div class="hero__orb hero__orb--1" style="opacity:.3"></div>
+    </div>
+    <div class="container cta-banner__inner">
+      <h2>Ready to preview your next post?</h2>
+      <p>No signup. No cost. Just paste, preview, and post with confidence.</p>
+      <a href="#preview-tool" class="btn btn--primary btn--lg">Start Previewing Free →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer-root"></div>
+
+  <!-- JS Components -->
+  <script src="components/header.js"></script>
+  <script src="components/hero-preview.js"></script>
+  <script src="components/twitter-tool.js"></script>
+  <script src="components/tools-cards.js"></script>
+  <script src="components/how-it-works.js"></script>
+  <script src="components/features.js"></script>
+  <script src="components/faq.js"></script>
+  <script src="components/footer.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
