@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – The Mission Behind TweetPreview</title>
+
+  <meta name="description" content="Learn more about TweetPreview. We build privacy-first, client-side tools to help creators and marketers preview their social media posts perfectly." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tweetpreview.github.io/about" />  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .about-hero {
+      padding: 160px 0 80px;
+      text-align: center;
+    }
+    .about-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .about-section {
+      max-width: 800px;
+      margin: 0 auto 100px;
+    }
+    .about-section h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--twitter);
+    }
+    .about-section p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .value-card {
+      background: var(--bg-card);
+      padding: 30px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .value-card h3 {
+      font-family: var(--font-display);
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-root"></div>
+
+  <main class="container">
+    <section class="about-hero">
+      <span class="section-label">Our Story</span>
+      <h1>Post with <span class="text-gradient">Certainty</span>.</h1>
+    </section>
+
+    <article class="about-section">
+      <h2>The Mission</h2>
+      <p>TweetPreview was born out of a simple frustration: social media platforms are unpredictable. You spend an hour crafting the perfect post, only for the image to be cropped awkwardly or the link card to look broken on mobile.</p>
+      <p>We believe that creators, marketers, and brands deserve a "what you see is what you get" experience. Our goal is to provide a sandbox where you can perfect your content before it ever goes live.</p>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>No BS Privacy</h3>
+          <p>We don't want your data. Everything you paste here stays in your browser. We don't store your tweets, your images, or your cookies.</p>
+        </div>
+        <div class="value-card">
+          <h3>Speed First</h3>
+          <p>No logins, no loading screens. Just a clean interface that works as fast as you do.</p>
+        </div>
+        <div class="value-card">
+          <h3>Native Fidelity</h3>
+          <p>We work tirelessly to ensure our previews look exactly like the real thing, across Twitter, Facebook, and beyond.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="about-section" style="text-align: center;">
+      <h2>Want to chat?</h2>
+      <p>Whether you have a feature request or just want to say hi, my inbox is always open.</p>
+      <a href="mailto:nolushac@gmail.com" class="btn btn--primary">Email Me: nolushac@gmail.com</a>
+    </article>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="components/header.js"></script>
+  <script src="components/footer.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
