@@ -18,7 +18,7 @@
 
         <nav aria-label="Main navigation">
           <ul class="header__nav">
-            <li><a href="#home">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#preview-tool">Preview</a></li>
             <li><a href="#tools">Tools</a></li>
             <li><a href="#features">Features</a></li>
