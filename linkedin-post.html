@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Post Preview Tool – See Your Post Before Publishing | TweetPreview</title>
+  <meta name="description" content="Preview your LinkedIn posts before publishing. See exactly how your text, images, reactions, and comments appear on LinkedIn. Free, instant, no login needed." />
+  <meta name="keywords" content="linkedin post preview, linkedin preview tool, linkedin post generator, social media preview, linkedin mockup, linkedin post checker" />
+  <meta name="author" content="TweetPreview" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tweetpreview.github.io/linkedin-post.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tweetpreview.github.io/linkedin-post.html" />
+  <meta property="og:title" content="LinkedIn Post Preview Tool – TweetPreview" />
+  <meta property="og:description" content="See exactly how your LinkedIn post looks before going live. Free preview tool with reactions, comments, image upload, dark/light mode, and one-click screenshot." />
+  <meta property="og:image" content="https://tweetpreview.github.io/assets/og-linkedin.png" />
+  <meta property="og:site_name" content="TweetPreview" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@tweetpreview" />
+  <meta name="twitter:title" content="LinkedIn Post Preview Tool – TweetPreview" />
+  <meta name="twitter:description" content="Preview your LinkedIn posts in real time. Screenshot with one click. No login, free forever." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://tweetpreview.github.io/linkedin-post.html",
+        "url": "https://tweetpreview.github.io/linkedin-post.html",
+        "name": "LinkedIn Post Preview Tool",
+        "description": "Preview LinkedIn posts with accurate styling, reactions, comments, and engagement metrics before publishing.",
+        "isPartOf": { "@id": "https://tweetpreview.github.io/#website" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tweetpreview.github.io/" },
+            { "@type": "ListItem", "position": 2, "name": "LinkedIn Post Preview", "item": "https://tweetpreview.github.io/linkedin-post.html" }
+          ]
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "LinkedIn Post Preview Tool",
+        "url": "https://tweetpreview.github.io/linkedin-post.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": ["Real-time LinkedIn post preview","Screenshot download","Dark and light mode","Image upload","Reaction counts","Comment preview","Post type selector","Connection degree"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is the LinkedIn post preview tool free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free with no login or account required." } },
+          { "@type": "Question", "name": "Can I take a screenshot of my LinkedIn post preview?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click the 'Screenshot' button to instantly download a PNG image of your post preview." } },
+          { "@type": "Question", "name": "Does the tool store my LinkedIn post content?", "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs locally in your browser. Nothing is stored or sent to any server." } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <!-- html2canvas for screenshot -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    /* =============================================
+       DESIGN SYSTEM
+       ============================================= */
+    :root {
+      --bg: #06070d;
+      --bg-2: #0b0d18;
+      --bg-card: #0f1120;
+      --bg-card-hover: #141727;
+      --border: rgba(255,255,255,0.07);
+      --border-accent: rgba(10,102,194,0.35);
+
+      --li: #0a66c2;
+      --li-dark: #004182;
+      --li-mid: #0073b1;
+      --li-glow: rgba(10,102,194,0.22);
+
+      /* LinkedIn dark theme colors */
+      --lid-bg: #1b1f23;
+      --lid-card: #1b1f23;
+      --lid-card2: #232831;
+      --lid-border: #38434f;
+      --lid-text: rgba(255,255,255,0.9);
+      --lid-muted: rgba(255,255,255,0.6);
+      --lid-faint: rgba(255,255,255,0.4);
+      --lid-action: rgba(255,255,255,0.08);
+
+      /* LinkedIn light theme colors */
+      --lil-bg: #f3f2ef;
+      --lil-card: #ffffff;
+      --lil-border: #e0e0e0;
+      --lil-text: rgba(0,0,0,0.9);
+      --lil-muted: rgba(0,0,0,0.6);
+      --lil-faint: rgba(0,0,0,0.4);
+      --lil-action: rgba(0,0,0,0.08);
+
+      --twitter: #1d9bf0;
+      --text: #f0f4ff;
+      --text-muted: #8892aa;
+      --text-faint: #3d4460;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-li: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-pill: 999px;
+      --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+
+      --screenshot-btn: #0a66c2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; border: none; outline: none; background: none; }
+
+    .container { width: min(1160px, 100%); margin: 0 auto; padding: 0 24px; }
+
+    /* ---- BUTTONS ---- */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px; border-radius: var(--radius-pill); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; transition: all var(--transition); cursor: pointer; border: none; }
+    .btn--primary { background: var(--li); color: #fff; box-shadow: 0 4px 24px var(--li-glow); }
+    .btn--primary:hover { background: var(--li-dark); transform: translateY(-2px); box-shadow: 0 8px 32px var(--li-glow); }
+    .btn--ghost { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
+    .btn--ghost:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .btn--screenshot { background: linear-gradient(135deg, #0a66c2, #0073b1); color: #fff; box-shadow: 0 4px 20px rgba(10,102,194,0.3); }
+    .btn--screenshot:hover { background: linear-gradient(135deg, #004182, #0059a0); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(10,102,194,0.4); }
+    .btn--screenshot:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .btn--sm { padding: 8px 18px; font-size: 0.85rem; }
+
+    /* ---- SECTIONS ---- */
+    .section { padding: 90px 0; }
+    .section--dark { background: var(--bg-2); }
+    .section-label { display: inline-block; font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--li); padding: 5px 13px; background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.22); border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+    .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; margin-bottom: 52px; line-height: 1.7; }
+
+    /* ---- HEADER ---- */
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 24px; height: 68px; display: flex; align-items: center; background: rgba(6,7,13,0.7); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background var(--transition); }
+    .site-header.scrolled { background: rgba(6,7,13,0.97); }
+    .header__inner { width: min(1160px, 100%); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .header__logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: var(--text); }
+    .logo-icon { width: 34px; height: 34px; background: var(--twitter); border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; }
+    .logo-icon svg { width: 18px; height: 18px; fill: #fff; }
+    .header__nav { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .header__nav a { font-size: 0.88rem; font-weight: 500; color: var(--text-muted); transition: color var(--transition); }
+    .header__nav a:hover { color: var(--text); }
+    .header__actions { display: flex; gap: 10px; align-items: center; }
+    .header__hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+    .header__hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all var(--transition); }
+    .mobile-nav { position: fixed; top: 68px; left: 0; right: 0; background: rgba(6,7,13,0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 18px 24px; display: none; flex-direction: column; gap: 14px; z-index: 99; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); padding: 7px 0; border-bottom: 1px solid var(--border); }
+
+    /* ---- PAGE HERO ---- */
+    .page-hero { padding: 130px 0 80px; position: relative; overflow: hidden; }
+    .page-hero__bg { position: absolute; inset: 0; pointer-events: none; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(90px); }
+    .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, rgba(10,102,194,0.16), transparent 70%); top: -80px; right: -80px; animation: orbFloat 10s ease-in-out infinite; }
+    .orb-2 { width: 360px; height: 360px; background: radial-gradient(circle, rgba(0,115,177,0.1), transparent 70%); bottom: 0; left: -80px; animation: orbFloat 8s 2.5s ease-in-out infinite; }
+    .orb-3 { width: 240px; height: 240px; background: radial-gradient(circle, rgba(10,102,194,0.08), transparent 70%); top: 45%; left: 42%; animation: orbFloat 6s 1s ease-in-out infinite; }
+    .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(10,102,194,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(10,102,194,0.035) 1px, transparent 1px); background-size: 55px 55px; }
+    @keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-28px) scale(1.05)} }
+
+    .page-hero__inner { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .page-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600; color: var(--li); background: rgba(10,102,194,0.09); border: 1px solid rgba(10,102,194,0.28); padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: 22px; }
+    .pulse { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: pulse-anim 2s ease-in-out infinite; }
+    @keyframes pulse-anim { 0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.5)} 50%{box-shadow:0 0 0 6px rgba(74,222,128,0)} }
+    .page-hero__title { font-family: var(--font-display); font-size: clamp(2.4rem, 4.5vw, 3.9rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+    .page-hero__title em { font-style: normal; background: linear-gradient(135deg, #0a66c2, #00a0dc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-hero__sub { font-size: 1.08rem; color: var(--text-muted); max-width: 490px; margin-bottom: 34px; line-height: 1.75; }
+    .page-hero__cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 42px; }
+    .hero-stats { display: flex; gap: 28px; }
+    .hero-stats .stat strong { display: block; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; }
+    .hero-stats .stat span { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* Hero browser shell */
+    .hero-preview-wrap { position: relative; }
+    .hero-preview-wrap::before { content: ''; position: absolute; inset: -1px; border-radius: 21px; background: linear-gradient(135deg, rgba(10,102,194,0.4), rgba(0,160,220,0.15)); z-index: -1; }
+    .browser-shell { background: var(--bg-card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+    .browser-bar { background: rgba(255,255,255,0.04); padding: 9px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+    .b-dots { display: flex; gap: 5px; }
+    .b-dots span { width: 8px; height: 8px; border-radius: 50%; }
+    .b-dots span:nth-child(1){background:#ff5f57} .b-dots span:nth-child(2){background:#febc2e} .b-dots span:nth-child(3){background:#28c840}
+    .b-url { flex: 1; background: rgba(255,255,255,0.06); border-radius: 5px; padding: 3px 10px; font-size: 0.7rem; color: var(--text-muted); font-family: monospace; }
+    .browser-inner { padding: 14px; background: #1b1f23; }
+
+    /* =============================================
+       LINKEDIN POST CARD — the real UI
+       ============================================= */
+    .li-card {
+      font-family: var(--font-li);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .li-card.theme-dark {
+      background: var(--lid-card);
+      border: 1px solid var(--lid-border);
+      color: var(--lid-text);
+    }
+    .li-card.theme-light {
+      background: var(--lil-card);
+      border: 1px solid var(--lil-border);
+      color: var(--lil-text);
+    }
+
+    /* Post header */
+    .li-post-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 12px 16px 0; gap: 10px; }
+    .li-post-header-left { display: flex; align-items: flex-start; gap: 10px; flex: 1; }
+    .li-avatar { position: relative; flex-shrink: 0; }
+    .li-avatar-img { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font-size: 1.3rem; overflow: hidden; background: linear-gradient(135deg, #0a66c2, #00a0dc); }
+    .li-avatar-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .li-avatar-badge { position: absolute; bottom: -2px; right: -2px; width: 18px; height: 18px; background: var(--li); border-radius: 4px; display: grid; place-items: center; }
+    .li-avatar-badge svg { width: 10px; height: 10px; fill: #fff; }
+    .li-user-info { flex: 1; min-width: 0; }
+    .li-user-name { font-weight: 600; font-size: 0.92rem; line-height: 1.3; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .theme-dark .li-user-name { color: rgba(255,255,255,0.9); }
+    .theme-light .li-user-name { color: rgba(0,0,0,0.9); }
+    .li-degree { font-size: 0.72rem; font-weight: 400; color: var(--li); }
+    .li-user-title { font-size: 0.8rem; line-height: 1.4; margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 280px; }
+    .theme-dark .li-user-title { color: rgba(255,255,255,0.6); }
+    .theme-light .li-user-title { color: rgba(0,0,0,0.6); }
+    .li-post-meta { font-size: 0.75rem; margin-top: 2px; display: flex; align-items: center; gap: 4px; }
+    .theme-dark .li-post-meta { color: rgba(255,255,255,0.4); }
+    .theme-light .li-post-meta { color: rgba(0,0,0,0.4); }
+    .li-globe-icon { font-size: 0.7rem; }
+    .li-header-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .li-follow-btn { font-size: 0.88rem; font-weight: 600; color: var(--li); background: none; border: none; cursor: pointer; padding: 4px 2px; white-space: nowrap; font-family: var(--font-li); display: flex; align-items: center; gap: 4px; }
+    .li-follow-btn::before { content: '+'; font-size: 1rem; }
+    .li-more-btn { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; transition: background var(--transition); font-size: 1.1rem; }
+    .theme-dark .li-more-btn { color: rgba(255,255,255,0.6); }
+    .theme-dark .li-more-btn:hover { background: rgba(255,255,255,0.08); }
+    .theme-light .li-more-btn { color: rgba(0,0,0,0.6); }
+    .theme-light .li-more-btn:hover { background: rgba(0,0,0,0.08); }
+    .li-close-btn { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; font-size: 0.85rem; }
+    .theme-dark .li-close-btn { color: rgba(255,255,255,0.6); }
+    .theme-light .li-close-btn { color: rgba(0,0,0,0.6); }
+
+    /* Post body */
+    .li-post-body { padding: 10px 16px; font-size: 0.93rem; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .theme-dark .li-post-body { color: rgba(255,255,255,0.9); }
+    .theme-light .li-post-body { color: rgba(0,0,0,0.9); }
+    .li-hashtag { color: var(--li); cursor: pointer; }
+    .li-see-more { color: var(--li); cursor: pointer; font-weight: 500; }
+
+    /* Post image */
+    .li-post-img { width: 100%; aspect-ratio: 1.91/1; overflow: hidden; position: relative; }
+    .li-post-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .li-post-img.placeholder { display: grid; place-items: center; flex-direction: column; gap: 8px; font-size: 0.85rem; aspect-ratio: 1.91/1; }
+    .theme-dark .li-post-img.placeholder { background: #283039; color: rgba(255,255,255,0.4); }
+    .theme-light .li-post-img.placeholder { background: #eef3f8; color: rgba(0,0,0,0.4); }
+
+    /* Document post */
+    .li-document { margin: 0 16px 10px; border-radius: 4px; overflow: hidden; border: 1px solid; }
+    .theme-dark .li-document { border-color: var(--lid-border); background: #283039; }
+    .theme-light .li-document { border-color: var(--lil-border); background: #eef3f8; }
+    .li-document-inner { padding: 16px; display: flex; align-items: center; gap: 12px; }
+    .li-document-icon { font-size: 2rem; }
+    .li-document-info h4 { font-size: 0.88rem; font-weight: 600; }
+    .li-document-info p { font-size: 0.78rem; margin-top: 2px; }
+    .theme-dark .li-document-info p { color: rgba(255,255,255,0.5); }
+    .theme-light .li-document-info p { color: rgba(0,0,0,0.5); }
+    .li-doc-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--li); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-top: 6px; }
+
+    /* Link preview */
+    .li-link-preview { margin: 0; }
+    .li-link-img { width: 100%; height: 140px; object-fit: cover; display: block; }
+    .li-link-img.placeholder { width: 100%; height: 140px; display: grid; place-items: center; font-size: 1.5rem; }
+    .theme-dark .li-link-img.placeholder { background: #283039; }
+    .theme-light .li-link-img.placeholder { background: #eef3f8; }
+    .li-link-info { padding: 10px 16px 12px; border-top: 1px solid; }
+    .theme-dark .li-link-info { border-color: var(--lid-border); background: #283039; }
+    .theme-light .li-link-info { border-color: var(--lil-border); background: #eef3f8; }
+    .li-link-source { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+    .theme-dark .li-link-source { color: rgba(255,255,255,0.45); }
+    .theme-light .li-link-source { color: rgba(0,0,0,0.45); }
+    .li-link-title { font-size: 0.88rem; font-weight: 700; line-height: 1.35; }
+    .li-link-desc { font-size: 0.78rem; margin-top: 3px; }
+    .theme-dark .li-link-desc { color: rgba(255,255,255,0.5); }
+    .theme-light .li-link-desc { color: rgba(0,0,0,0.5); }
+
+    /* Reactions count bar */
+    .li-reactions-bar { padding: 6px 16px 4px; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; }
+    .theme-dark .li-reactions-bar { color: rgba(255,255,255,0.5); }
+    .theme-light .li-reactions-bar { color: rgba(0,0,0,0.5); }
+    .li-reaction-emojis { display: flex; align-items: center; gap: 0; }
+    .li-reaction-emoji { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid; display: grid; place-items: center; font-size: 0.75rem; margin-right: -4px; position: relative; z-index: 1; }
+    .theme-dark .li-reaction-emoji { border-color: var(--lid-card); }
+    .theme-light .li-reaction-emoji { border-color: var(--lil-card); }
+    .li-reactions-bar .sep { margin: 0 4px; }
+    .li-comment-count { cursor: pointer; }
+    .theme-dark .li-comment-count:hover { color: rgba(255,255,255,0.8); text-decoration: underline; }
+    .theme-light .li-comment-count:hover { color: rgba(0,0,0,0.8); text-decoration: underline; }
+
+    /* Divider */
+    .li-divider { margin: 0 16px; height: 1px; }
+    .theme-dark .li-divider { background: var(--lid-border); }
+    .theme-light .li-divider { background: var(--lil-border); }
+
+    /* Action bar */
+    .li-actions { display: flex; padding: 2px 8px; }
+    .li-action-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 10px 4px; border-radius: 4px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: background var(--transition); border: none; background: none; font-family: var(--font-li); }
+    .theme-dark .li-action-btn { color: rgba(255,255,255,0.6); }
+    .theme-dark .li-action-btn:hover { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); }
+    .theme-light .li-action-btn { color: rgba(0,0,0,0.6); }
+    .theme-light .li-action-btn:hover { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.9); }
+    .li-action-btn svg { width: 18px; height: 18px; }
+
+    /* Comments */
+    .li-comments { padding: 8px 16px 12px; }
+    .li-comment { display: flex; gap: 8px; margin-bottom: 8px; }
+    .li-comment-avatar { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 1rem; flex-shrink: 0; }
+    .theme-dark .li-comment-avatar { background: #283039; }
+    .theme-light .li-comment-avatar { background: #eef3f8; }
+    .li-comment-bubble { border-radius: 8px; padding: 8px 12px; font-size: 0.85rem; flex: 1; }
+    .theme-dark .li-comment-bubble { background: #283039; }
+    .theme-light .li-comment-bubble { background: #f3f2ef; }
+    .li-comment-name { font-weight: 700; font-size: 0.82rem; }
+    .theme-dark .li-comment-name { color: rgba(255,255,255,0.9); }
+    .theme-light .li-comment-name { color: rgba(0,0,0,0.9); }
+    .li-comment-role { font-size: 0.73rem; display: block; margin-top: 1px; }
+    .theme-dark .li-comment-role { color: rgba(255,255,255,0.45); }
+    .theme-light .li-comment-role { color: rgba(0,0,0,0.45); }
+    .li-comment-text { font-size: 0.85rem; margin-top: 4px; }
+    .theme-dark .li-comment-text { color: rgba(255,255,255,0.85); }
+    .theme-light .li-comment-text { color: rgba(0,0,0,0.85); }
+    .li-reply-input { display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+    .li-reply-box { flex: 1; border-radius: 20px; border: 1px solid; padding: 7px 14px; font-size: 0.83rem; font-family: var(--font-li); outline: none; }
+    .theme-dark .li-reply-box { background: #283039; border-color: var(--lid-border); color: rgba(255,255,255,0.9); }
+    .theme-dark .li-reply-box::placeholder { color: rgba(255,255,255,0.35); }
+    .theme-light .li-reply-box { background: #fff; border-color: var(--lil-border); color: rgba(0,0,0,0.9); }
+    .theme-light .li-reply-box::placeholder { color: rgba(0,0,0,0.35); }
+
+    /* Promo / Boosted badge */
+    .li-promoted { font-size: 0.72rem; color: var(--li); padding: 4px 16px 0; font-weight: 500; display: none; }
+
+    /* =============================================
+       TOOL LAYOUT
+       ============================================= */
+    .tool-layout { display: grid; grid-template-columns: 400px 1fr; gap: 36px; align-items: start; }
+
+    /* Composer */
+    .composer-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .composer-tabs { display: flex; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+    .composer-tabs::-webkit-scrollbar { display: none; }
+    .ctab { flex: 1; min-width: 70px; padding: 13px 10px; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; text-align: center; color: var(--text-muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all var(--transition); letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+    .ctab.active { color: var(--li); border-bottom-color: var(--li); background: rgba(10,102,194,0.04); }
+    .ctab:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.03); }
+    .ctab-panel { display: none; padding: 20px 18px; }
+    .ctab-panel.active { display: block; }
+
+    .field-group { margin-bottom: 14px; }
+    .field-label { display: block; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .field-input, .field-textarea, .field-select {
+      width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text); font-family: var(--font-body);
+      font-size: 0.9rem; padding: 9px 12px; transition: border-color var(--transition); resize: none;
+    }
+    .field-input:focus, .field-textarea:focus, .field-select:focus { outline: none; border-color: var(--li); box-shadow: 0 0 0 3px rgba(10,102,194,0.12); }
+    .field-textarea { min-height: 110px; line-height: 1.6; }
+    .field-select option { background: #111422; }
+    .char-count { text-align: right; font-size: 0.73rem; color: var(--text-muted); margin-top: 4px; }
+    .char-count.warn { color: #f59e0b; }
+    .char-count.over { color: #ef4444; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--border); }
+    .toggle-label { font-size: 0.84rem; color: var(--text-muted); }
+    .toggle { width: 38px; height: 21px; background: rgba(255,255,255,0.12); border-radius: 99px; position: relative; cursor: pointer; transition: background var(--transition); border: none; flex-shrink: 0; }
+    .toggle.on { background: var(--li); }
+    .toggle::after { content: ''; position: absolute; top: 2.5px; left: 2.5px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform var(--transition); }
+    .toggle.on::after { transform: translateX(17px); }
+
+    .opt-pills { display: flex; gap: 7px; flex-wrap: wrap; }
+    .opt-pill { padding: 5px 12px; border-radius: var(--radius-pill); font-size: 0.77rem; font-weight: 600; border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; transition: all var(--transition); background: none; }
+    .opt-pill.selected { background: rgba(10,102,194,0.12); color: var(--li); border-color: rgba(10,102,194,0.35); }
+    .opt-pill:hover:not(.selected) { border-color: rgba(10,102,194,0.25); color: var(--text); }
+
+    .emoji-btn { width: 30px; height: 30px; border-radius: 7px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); display: grid; place-items: center; font-size: 0.95rem; cursor: pointer; transition: all var(--transition); flex-shrink: 0; }
+    .emoji-btn:hover, .emoji-btn.selected { background: rgba(10,102,194,0.15); border-color: var(--li); }
+
+    .color-swatch { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all var(--transition); }
+    .color-swatch.selected { border-color: #fff; transform: scale(1.18); }
+
+    /* Reaction inputs */
+    .reaction-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .r-input-group { display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 9px; }
+    .r-input-group span { font-size: 1rem; flex-shrink: 0; }
+    .r-input-group input { flex: 1; background: none; border: none; color: var(--text); font-family: var(--font-body); font-size: 0.83rem; outline: none; width: 0; min-width: 0; }
+
+    /* Image drop */
+    .image-drop { border: 2px dashed var(--border); border-radius: var(--radius-sm); padding: 20px; text-align: center; cursor: pointer; transition: all var(--transition); position: relative; overflow: hidden; }
+    .image-drop:hover, .image-drop.dragover { border-color: var(--li); background: rgba(10,102,194,0.05); }
+    .image-drop input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .image-drop p { font-size: 0.8rem; color: var(--text-muted); }
+    .image-thumb { width: 100%; aspect-ratio: 1.91/1; border-radius: 8px; object-fit: cover; display: none; margin-top: 10px; }
+
+    /* Composer actions */
+    .composer-actions { padding: 14px 18px; border-top: 1px solid var(--border); display: flex; gap: 9px; }
+    .composer-actions .btn { flex: 1; justify-content: center; font-size: 0.88rem; padding: 10px 14px; }
+
+    /* Preview panel */
+    .preview-panel { position: sticky; top: 84px; }
+    .preview-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+    .preview-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 7px; }
+    .live-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: pulse-anim 2s infinite; }
+    .theme-switcher { display: flex; gap: 6px; }
+    .theme-btn { padding: 5px 12px; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700; font-family: var(--font-display); border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; transition: all var(--transition); background: none; }
+    .theme-btn.active { background: rgba(10,102,194,0.12); color: var(--li); border-color: rgba(10,102,194,0.35); }
+
+    /* Screenshot button */
+    .screenshot-btn-wrap { position: relative; }
+    #screenshot-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 20px; border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #0a66c2, #0073b1);
+      color: #fff; font-family: var(--font-display); font-weight: 700;
+      font-size: 0.85rem; border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(10,102,194,0.3);
+      transition: all var(--transition);
+    }
+    #screenshot-btn:hover { background: linear-gradient(135deg, #004182, #005e9e); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(10,102,194,0.4); }
+    #screenshot-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+    #screenshot-btn svg { width: 15px; height: 15px; }
+    .screenshot-success { position: absolute; top: calc(100% + 8px); right: 0; background: #22c55e; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 5px 12px; border-radius: var(--radius-pill); white-space: nowrap; opacity: 0; transform: translateY(4px); transition: all var(--transition); pointer-events: none; }
+    .screenshot-success.show { opacity: 1; transform: translateY(0); }
+
+    /* Device shell */
+    .device-frame { border-radius: 12px; overflow: hidden; border: 1px solid; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    .device-frame.theme-dark { background: #1b1f23; border-color: #38434f; }
+    .device-frame.theme-light { background: #f3f2ef; border-color: #e0e0e0; }
+
+    .li-topbar { display: flex; align-items: center; padding: 10px 16px; gap: 10px; }
+    .theme-dark .li-topbar { border-bottom: 1px solid #38434f; }
+    .theme-light .li-topbar { border-bottom: 1px solid #e0e0e0; }
+    .li-logo { display: flex; align-items: center; }
+    .li-logo svg { width: 26px; height: 26px; fill: #0a66c2; }
+    .li-search-bar { flex: 1; border-radius: 4px; padding: 7px 10px; font-size: 0.82rem; display: flex; align-items: center; gap: 6px; }
+    .theme-dark .li-search-bar { background: #283039; color: rgba(255,255,255,0.5); }
+    .theme-light .li-search-bar { background: #eef3f8; color: rgba(0,0,0,0.5); }
+    .li-nav-icons { display: flex; gap: 18px; }
+    .li-nav-icon { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 0.6rem; cursor: pointer; }
+    .theme-dark .li-nav-icon { color: rgba(255,255,255,0.4); }
+    .theme-light .li-nav-icon { color: rgba(0,0,0,0.4); }
+    .li-nav-icon svg { width: 18px; height: 18px; }
+    .li-feed-wrap { padding: 10px 12px; }
+
+    /* =============================================
+       HOW-TO SECTION
+       ============================================= */
+    .how-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; position: relative; }
+    .how-grid::before { content: ''; position: absolute; top: 37px; left: calc(12.5% + 18px); right: calc(12.5% + 18px); height: 1px; background: linear-gradient(90deg, rgba(10,102,194,0.5), rgba(10,102,194,0.1) 50%, rgba(10,102,194,0.5)); }
+    .how-step { text-align: center; padding: 28px 16px; }
+    .how-num { width: 64px; height: 64px; border-radius: 50%; background: var(--bg-card); border: 2px solid rgba(10,102,194,0.35); display: grid; place-items: center; margin: 0 auto 18px; font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--li); position: relative; }
+    .how-num::after { content: ''; position: absolute; inset: -7px; border-radius: 50%; background: radial-gradient(circle, rgba(10,102,194,0.1), transparent 70%); }
+    .how-step h3 { font-family: var(--font-display); font-size: 0.98rem; font-weight: 700; margin-bottom: 9px; }
+    .how-step p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* =============================================
+       DESCRIPTION / ABOUT
+       ============================================= */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-text h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 18px; line-height: 1.2; }
+    .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; font-size: 0.96rem; }
+    .checklist { list-style: none; margin-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+    .checklist li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.91rem; color: var(--text-muted); line-height: 1.55; }
+    .checklist li::before { content: '✓'; flex-shrink: 0; width: 19px; height: 19px; background: rgba(10,102,194,0.12); color: var(--li); border-radius: 50%; display: grid; place-items: center; font-size: 0.68rem; font-weight: 800; margin-top: 1px; }
+    .about-visual { display: flex; flex-direction: column; gap: 18px; }
+    .about-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; }
+    .about-card-title { font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .feat-pill { display: inline-flex; align-items: center; gap: 5px; padding: 6px 13px; background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.2); border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 600; color: var(--li); margin: 4px; }
+    .use-case { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+    .use-case:last-child { margin-bottom: 0; }
+    .use-case-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .use-case strong { display: block; font-size: 0.88rem; margin-bottom: 3px; }
+    .use-case span { font-size: 0.81rem; color: var(--text-muted); }
+
+    /* =============================================
+       TOOLS CARDS
+       ============================================= */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+    .tool-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; transition: all var(--transition); cursor: pointer; position: relative; overflow: hidden; }
+    .tool-card::before { content: ''; position: absolute; inset: 0; background: var(--card-color, var(--li)); opacity: 0; transition: opacity var(--transition); }
+    .tool-card:hover { transform: translateY(-4px); border-color: var(--card-color, var(--li)); box-shadow: 0 14px 36px rgba(0,0,0,0.3); }
+    .tool-card:hover::before { opacity: 0.04; }
+    .tool-card__icon { width: 48px; height: 48px; border-radius: 13px; display: grid; place-items: center; margin-bottom: 16px; background: rgba(255,255,255,0.06); transition: all var(--transition); position: relative; z-index: 1; }
+    .tool-card:hover .tool-card__icon { background: var(--card-color, var(--li)); transform: scale(1.08); }
+    .tool-card__icon svg { width: 24px; height: 24px; }
+    .tool-card__name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 7px; position: relative; z-index: 1; }
+    .tool-card__desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; position: relative; z-index: 1; }
+    .tool-card__link { display: inline-flex; align-items: center; gap: 5px; margin-top: 15px; font-size: 0.82rem; font-weight: 600; color: var(--card-color, var(--li)); position: relative; z-index: 1; transition: gap var(--transition); }
+    .tool-card:hover .tool-card__link { gap: 9px; }
+
+    /* =============================================
+       FAQ
+       ============================================= */
+    .faq-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+    .faq-col { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; transition: border-color var(--transition); }
+    .faq-item.open { border-color: rgba(10,102,194,0.4); }
+    .faq-q { width: 100%; text-align: left; background: var(--bg-card); color: var(--text); font-family: var(--font-body); font-size: 0.93rem; font-weight: 600; padding: 16px 17px; display: flex; justify-content: space-between; align-items: center; gap: 10px; transition: background var(--transition); border: none; cursor: pointer; }
+    .faq-q:hover { background: var(--bg-card-hover); }
+    .faq-arrow { width: 19px; height: 19px; border-radius: 50%; background: rgba(10,102,194,0.1); border: 1px solid rgba(10,102,194,0.22); display: grid; place-items: center; flex-shrink: 0; font-size: 0.65rem; color: var(--li); transition: transform var(--transition); }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { background: var(--bg-card); padding: 0 17px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; font-size: 0.88rem; color: var(--text-muted); line-height: 1.72; }
+    .faq-item.open .faq-a { max-height: 240px; padding: 0 17px 16px; }
+
+    /* =============================================
+       CTA BANNER
+       ============================================= */
+    .cta-banner { padding: 84px 0; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(10,102,194,0.08), rgba(0,160,220,0.06)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .cta-inner { text-align: center; position: relative; z-index: 1; }
+    .cta-inner h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 800; margin-bottom: 12px; }
+    .cta-inner p { font-size: 1rem; color: var(--text-muted); margin-bottom: 28px; }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    .site-footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 58px 0 28px; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; margin-top: 12px; max-width: 240px; }
+    .footer-socials { display: flex; gap: 8px; margin-top: 18px; }
+    .social-btn { width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.05); border: 1px solid var(--border); display: grid; place-items: center; transition: all var(--transition); color: var(--text-muted); }
+    .social-btn:hover { background: var(--li); border-color: var(--li); color: #fff; transform: translateY(-2px); }
+    .social-btn svg { width: 15px; height: 15px; fill: currentColor; }
+    .footer-widget h4 { font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 15px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 9px; }
+    .footer-links a { font-size: 0.84rem; color: var(--text-muted); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--text); }
+    .footer-newsletter input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: var(--font-body); font-size: 0.84rem; padding: 9px 12px; margin-bottom: 7px; transition: border-color var(--transition); }
+    .footer-newsletter input:focus { outline: none; border-color: var(--li); }
+    .footer-newsletter button { width: 100%; padding: 9px; background: var(--li); color: #fff; border-radius: var(--radius-sm); font-family: var(--font-display); font-weight: 700; font-size: 0.84rem; transition: all var(--transition); border: none; cursor: pointer; }
+    .footer-newsletter button:hover { background: var(--li-dark); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); flex-wrap: wrap; gap: 10px; }
+    .footer-bottom-links { display: flex; gap: 18px; }
+    .footer-bottom-links a:hover { color: var(--text); }
+
+    /* =============================================
+       SCROLL REVEAL & ANIMATIONS
+       ============================================= */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+    .anim-1{animation:fadeUp 0.6s 0.05s ease both}
+    .anim-2{animation:fadeUp 0.6s 0.15s ease both}
+    .anim-3{animation:fadeUp 0.6s 0.25s ease both}
+    .anim-4{animation:fadeUp 0.6s 0.35s ease both}
+
+    /* Screenshot loading overlay */
+    .screenshot-loading { display: none; position: absolute; inset: 0; background: rgba(6,7,13,0.7); border-radius: 12px; z-index: 10; place-items: center; backdrop-filter: blur(4px); }
+    .screenshot-loading.show { display: grid; }
+    .screenshot-spinner { width: 36px; height: 36px; border: 3px solid rgba(10,102,194,0.3); border-top-color: var(--li); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media(max-width:1060px) { .tool-layout{grid-template-columns:1fr} .preview-panel{position:static} }
+    @media(max-width:900px) { .page-hero__inner{grid-template-columns:1fr} .hero-preview-wrap{display:none} .about-grid{grid-template-columns:1fr} .how-grid{grid-template-columns:1fr 1fr} .footer-top{grid-template-columns:1fr 1fr} .header__nav,.header__actions{display:none} .header__hamburger{display:flex} .faq-wrap{grid-template-columns:1fr} }
+    @media(max-width:600px) { .how-grid{grid-template-columns:1fr} .how-grid::before{display:none} .tools-grid{grid-template-columns:1fr} .footer-top{grid-template-columns:1fr} .two-col{grid-template-columns:1fr} .reaction-grid{grid-template-columns:1fr 1fr} }
+
+    /* Scrollbar thin */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+  </style>
+</head>
+<body>
+
+<!-- ========================================
+     HEADER
+     ======================================== -->
+<header class="site-header" id="site-header">
+  <div class="header__inner">
+    <a href="index.html" class="header__logo" aria-label="TweetPreview Home">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.265 5.643L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+      </div>
+      TweetPreview
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="header__nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#preview-tool">LI Preview</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#tools">All Tools</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="header__actions">
+      <a href="#preview-tool" class="btn btn--primary btn--sm">Try Free</a>
+    </div>
+    <button class="header__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="#preview-tool">LI Preview</a>
+  <a href="#how-it-works">How It Works</a>
+  <a href="#about">About</a>
+  <a href="#tools">All Tools</a>
+  <a href="#faq">FAQ</a>
+  <a href="#preview-tool" class="btn btn--primary" style="margin-top:8px;justify-content:center">Try Free</a>
+</nav>
+
+<!-- ========================================
+     PAGE HERO
+     ======================================== -->
+<section class="page-hero" id="home" aria-label="LinkedIn Post Preview Hero">
+  <div class="page-hero__bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-bg"></div>
+  </div>
+  <div class="container page-hero__inner">
+    <div>
+      <div class="page-hero__badge anim-1">
+        <span class="pulse"></span>
+        Free · Screenshot · No Login · Instant
+      </div>
+      <h1 class="page-hero__title anim-2">
+        Preview Your<br/><em>LinkedIn Post</em><br/>Before You Publish
+      </h1>
+      <p class="page-hero__sub anim-3">
+        See exactly how your LinkedIn post looks to your network — text, image, reactions, comments, document cards, link previews. Screenshot in one click.
+      </p>
+      <div class="page-hero__cta anim-4">
+        <a href="#preview-tool" class="btn btn--primary">Open Preview Tool</a>
+        <a href="#how-it-works" class="btn btn--ghost">How It Works ↓</a>
+      </div>
+      <div class="hero-stats anim-4">
+        <div class="stat"><strong>1M+</strong><span>Posts previewed</span></div>
+        <div class="stat"><strong>5</strong><span>Post types</span></div>
+        <div class="stat"><strong>1-click</strong><span>Screenshot</span></div>
+      </div>
+    </div>
+
+    <!-- Mini hero preview -->
+    <div class="hero-preview-wrap anim-3">
+      <div class="browser-shell">
+        <div class="browser-bar">
+          <div class="b-dots"><span></span><span></span><span></span></div>
+          <div class="b-url">tweetpreview.github.io/linkedin-post.html</div>
+        </div>
+        <div class="browser-inner">
+          <!-- Static mini LinkedIn card in hero -->
+          <div class="li-card theme-dark" style="box-shadow:0 8px 28px rgba(0,0,0,0.5)">
+            <div class="li-post-header">
+              <div class="li-post-header-left">
+                <div class="li-avatar">
+                  <div class="li-avatar-img">👤</div>
+                  <div class="li-avatar-badge"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></div>
+                </div>
+                <div class="li-user-info">
+                  <div class="li-user-name">Your Name <span class="li-degree">• 1st</span></div>
+                  <div class="li-user-title">Your Professional Title · Company</div>
+                  <div class="li-post-meta"><span>Just now</span> <span>·</span> <span class="li-globe-icon">🌐</span></div>
+                </div>
+              </div>
+              <div class="li-header-actions">
+                <button class="li-follow-btn"> Follow</button>
+                <button class="li-close-btn">✕</button>
+              </div>
+            </div>
+            <div class="li-post-body" style="color:rgba(255,255,255,0.9)">Excited to share that our team just launched <span class="li-hashtag">#TweetPreview</span> — a free tool to preview LinkedIn posts before publishing! ✨
+
+Check it out and let me know what you think. <span class="li-hashtag">#LinkedIn</span> <span class="li-hashtag">#SocialMedia</span></div>
+            <div class="li-reactions-bar">
+              <div style="display:flex;align-items:center;gap:6px">
+                <div class="li-reaction-emojis">
+                  <div class="li-reaction-emoji" style="background:#0a66c2">👍</div>
+                  <div class="li-reaction-emoji" style="background:#df704d">❤️</div>
+                  <div class="li-reaction-emoji" style="background:#f5bb5c">🎉</div>
+                </div>
+                <span style="color:rgba(255,255,255,0.5);font-size:0.8rem">847</span>
+              </div>
+              <span style="color:rgba(255,255,255,0.5);font-size:0.8rem">132 comments · 48 reposts</span>
+            </div>
+            <div class="li-divider"></div>
+            <div class="li-actions">
+              <button class="li-action-btn theme-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/></svg>Like</button>
+              <button class="li-action-btn theme-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Comment</button>
+              <button class="li-action-btn theme-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>Repost</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     LIVE PREVIEW TOOL
+     ======================================== -->
+<section class="section section--dark" id="preview-tool" aria-label="LinkedIn Post Preview Tool">
+  <div class="container">
+    <div class="section-label">Live Tool</div>
+    <h2 class="section-title">LinkedIn Post Preview</h2>
+    <p class="section-sub">Compose your post, choose from 5 post types, and watch it render in real time — exactly as it appears on LinkedIn. Screenshot with one click.</p>
+
+    <div class="tool-layout">
+
+      <!-- COMPOSER PANEL -->
+      <div class="composer-panel reveal">
+        <div class="composer-tabs">
+          <button class="ctab active" data-tab="content">Content</button>
+          <button class="ctab" data-tab="author">Author</button>
+          <button class="ctab" data-tab="media">Media</button>
+          <button class="ctab" data-tab="advanced">Advanced</button>
+          <button class="ctab" data-tab="comments">Comments</button>
+        </div>
+
+        <!-- CONTENT TAB -->
+        <div class="ctab-panel active" id="tab-content">
+          <div class="field-group">
+            <label class="field-label" for="li-text">Post Text</label>
+            <textarea class="field-textarea" id="li-text" placeholder="Start writing your LinkedIn post…" maxlength="3000" style="min-height:130px">Excited to share something I've been working on — a free LinkedIn Post Preview tool! 🚀
+
+Now you can see exactly how your post looks before hitting publish. Great for:
+✅ Checking your formatting
+✅ Previewing hashtags
+✅ Client approvals
+
+Try it free at TweetPreview. #LinkedIn #SocialMedia #ContentMarketing</textarea>
+            <div class="char-count" id="li-char-count">0 / 3000</div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Post Type</label>
+            <div class="opt-pills" id="post-type-opts">
+              <button class="opt-pill selected" data-type="text">Text</button>
+              <button class="opt-pill" data-type="image">Image</button>
+              <button class="opt-pill" data-type="document">Document</button>
+              <button class="opt-pill" data-type="link">Link Preview</button>
+              <button class="opt-pill" data-type="poll">Poll</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="li-timestamp">Posted Time</label>
+            <input class="field-input" id="li-timestamp" type="text" value="Just now" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Visibility</label>
+            <div class="opt-pills" id="visibility-opts">
+              <button class="opt-pill selected" data-vis="🌐">🌐 Anyone</button>
+              <button class="opt-pill" data-vis="👥">👥 Connections</button>
+              <button class="opt-pill" data-vis="🏢">🏢 Company</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTHOR TAB -->
+        <div class="ctab-panel" id="tab-author">
+          <div class="field-group">
+            <label class="field-label" for="li-name">Full Name</label>
+            <input class="field-input" id="li-name" type="text" value="Your Name" maxlength="60" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="li-title">Job Title & Company</label>
+            <input class="field-input" id="li-title" type="text" value="Senior Product Manager · TweetPreview" maxlength="100" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Connection Degree</label>
+            <div class="opt-pills" id="degree-opts">
+              <button class="opt-pill selected" data-degree="• 1st">1st</button>
+              <button class="opt-pill" data-degree="• 2nd">2nd</button>
+              <button class="opt-pill" data-degree="• 3rd">3rd</button>
+              <button class="opt-pill" data-degree="">None</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Avatar Emoji</label>
+            <div style="display:flex;gap:6px;flex-wrap:wrap" id="avatar-emojis">
+              <button class="emoji-btn selected" data-emoji="👤">👤</button>
+              <button class="emoji-btn" data-emoji="👩">👩</button>
+              <button class="emoji-btn" data-emoji="👨">👨</button>
+              <button class="emoji-btn" data-emoji="🧑‍💼">🧑‍💼</button>
+              <button class="emoji-btn" data-emoji="👩‍💻">👩‍💻</button>
+              <button class="emoji-btn" data-emoji="🧑‍🎨">🧑‍🎨</button>
+              <button class="emoji-btn" data-emoji="🏢">🏢</button>
+              <button class="emoji-btn" data-emoji="🤖">🤖</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Avatar Background</label>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:4px" id="avatar-colors">
+              <div class="color-swatch selected" data-color="linear-gradient(135deg,#0a66c2,#00a0dc)" style="background:linear-gradient(135deg,#0a66c2,#00a0dc)"></div>
+              <div class="color-swatch" data-color="linear-gradient(135deg,#5f2ee5,#9b59b6)" style="background:linear-gradient(135deg,#5f2ee5,#9b59b6)"></div>
+              <div class="color-swatch" data-color="linear-gradient(135deg,#e63946,#c1121f)" style="background:linear-gradient(135deg,#e63946,#c1121f)"></div>
+              <div class="color-swatch" data-color="linear-gradient(135deg,#2dc653,#138a35)" style="background:linear-gradient(135deg,#2dc653,#138a35)"></div>
+              <div class="color-swatch" data-color="linear-gradient(135deg,#f59e0b,#d97706)" style="background:linear-gradient(135deg,#f59e0b,#d97706)"></div>
+              <div class="color-swatch" data-color="linear-gradient(135deg,#0d9488,#0f766e)" style="background:linear-gradient(135deg,#0d9488,#0f766e)"></div>
+            </div>
+          </div>
+          <div class="toggle-row" style="border:none;padding-top:8px">
+            <span class="toggle-label">Show "Follow" button</span>
+            <button class="toggle on" id="toggle-follow" aria-pressed="true"></button>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Show LinkedIn badge on avatar</span>
+            <button class="toggle on" id="toggle-li-badge" aria-pressed="true"></button>
+          </div>
+        </div>
+
+        <!-- MEDIA TAB -->
+        <div class="ctab-panel" id="tab-media">
+          <div id="media-image-section">
+            <div class="field-group">
+              <label class="field-label">Upload Image</label>
+              <div class="image-drop" id="image-drop">
+                <input type="file" accept="image/*" id="image-upload" />
+                <div style="font-size:1.8rem;margin-bottom:8px">🖼️</div>
+                <p><strong style="color:var(--li)">Click to upload</strong> or drag & drop</p>
+                <p style="margin-top:4px;font-size:0.74rem">PNG, JPG, GIF — up to 10MB</p>
+              </div>
+              <img id="image-thumb" class="image-thumb" alt="Preview" />
+            </div>
+          </div>
+
+          <div id="media-document-section" style="display:none">
+            <div class="field-group">
+              <label class="field-label" for="doc-title">Document Title</label>
+              <input class="field-input" id="doc-title" type="text" value="My Presentation 2026.pdf" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="doc-pages">Pages / Slides</label>
+              <input class="field-input" id="doc-pages" type="text" value="24 slides" />
+            </div>
+          </div>
+
+          <div id="media-link-section" style="display:none">
+            <div class="field-group">
+              <label class="field-label" for="link-source">Link Domain</label>
+              <input class="field-input" id="link-source" type="text" value="tweetpreview.github.io" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="link-title">Link Title</label>
+              <input class="field-input" id="link-title" type="text" value="LinkedIn Post Preview Tool – Free & Instant" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="link-desc">Link Description</label>
+              <input class="field-input" id="link-desc" type="text" value="Preview your LinkedIn post before publishing. Free tool, no login required." />
+            </div>
+          </div>
+
+          <div id="media-poll-section" style="display:none">
+            <div class="field-group">
+              <label class="field-label" for="poll-q">Poll Question</label>
+              <input class="field-input" id="poll-q" type="text" value="What's your #1 challenge with LinkedIn content?" />
+            </div>
+            <div class="field-group">
+              <label class="field-label">Options</label>
+              <input class="field-input" id="poll-opt1" type="text" value="Finding time to post" style="margin-bottom:6px" />
+              <input class="field-input" id="poll-opt2" type="text" value="Coming up with ideas" style="margin-bottom:6px" />
+              <input class="field-input" id="poll-opt3" type="text" value="Writing good copy" style="margin-bottom:6px" />
+              <input class="field-input" id="poll-opt4" type="text" value="Growing engagement" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="poll-duration">Poll Duration</label>
+              <input class="field-input" id="poll-duration" type="text" value="1 week left" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ADVANCED TAB -->
+        <div class="ctab-panel" id="tab-advanced">
+          <div class="field-group">
+            <label class="field-label">Reactions</label>
+            <div class="reaction-grid">
+              <div class="r-input-group"><span>👍</span><input type="text" id="r-like" value="847" placeholder="0" /></div>
+              <div class="r-input-group"><span>❤️</span><input type="text" id="r-love" value="214" placeholder="0" /></div>
+              <div class="r-input-group"><span>🎉</span><input type="text" id="r-celebrate" value="156" placeholder="0" /></div>
+              <div class="r-input-group"><span>💡</span><input type="text" id="r-insightful" value="89" placeholder="0" /></div>
+              <div class="r-input-group"><span>🤝</span><input type="text" id="r-support" value="43" placeholder="0" /></div>
+              <div class="r-input-group"><span>😄</span><input type="text" id="r-funny" value="" placeholder="0" /></div>
+            </div>
+          </div>
+          <div class="two-col" style="margin-top:12px">
+            <div class="field-group">
+              <label class="field-label" for="li-comment-count">Comments</label>
+              <input class="field-input" id="li-comment-count" type="text" value="132" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="li-reposts">Reposts</label>
+              <input class="field-input" id="li-reposts" type="text" value="48" />
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Shown Reaction Icons</label>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px" id="reaction-icons-toggle">
+              <button class="emoji-btn selected" data-r="👍" style="font-size:0.85rem">👍</button>
+              <button class="emoji-btn selected" data-r="❤️" style="font-size:0.85rem">❤️</button>
+              <button class="emoji-btn selected" data-r="🎉" style="font-size:0.85rem">🎉</button>
+              <button class="emoji-btn" data-r="💡" style="font-size:0.85rem">💡</button>
+              <button class="emoji-btn" data-r="🤝" style="font-size:0.85rem">🤝</button>
+              <button class="emoji-btn" data-r="😄" style="font-size:0.85rem">😄</button>
+            </div>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Show reactions bar</span>
+            <button class="toggle on" id="toggle-reactions" aria-pressed="true"></button>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Show action buttons</span>
+            <button class="toggle on" id="toggle-actions" aria-pressed="true"></button>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Show Promoted label</span>
+            <button class="toggle" id="toggle-promoted" aria-pressed="false"></button>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Truncate text (see more…)</span>
+            <button class="toggle" id="toggle-truncate" aria-pressed="false"></button>
+          </div>
+        </div>
+
+        <!-- COMMENTS TAB -->
+        <div class="ctab-panel" id="tab-comments">
+          <div class="toggle-row" style="border:none;padding-top:0;margin-bottom:14px">
+            <span class="toggle-label">Show comments section</span>
+            <button class="toggle on" id="toggle-comments" aria-pressed="true"></button>
+          </div>
+          <div id="comments-editor">
+            <div class="field-group">
+              <label class="field-label">Comment 1</label>
+              <div class="two-col" style="margin-bottom:6px">
+                <input class="field-input" id="c1-name" type="text" value="Sarah Chen" placeholder="Name" />
+                <input class="field-input" id="c1-emoji" type="text" value="👩" placeholder="Avatar" maxlength="2" />
+              </div>
+              <input class="field-input" id="c1-role" type="text" value="Head of Marketing · Acme Corp" placeholder="Title · Company" style="margin-bottom:6px"/>
+              <input class="field-input" id="c1-text" type="text" value="This is incredibly useful! We've been waiting for something like this. 🙌" placeholder="Comment text" />
+            </div>
+            <div class="field-group">
+              <label class="field-label">Comment 2</label>
+              <div class="two-col" style="margin-bottom:6px">
+                <input class="field-input" id="c2-name" type="text" value="James Rivera" placeholder="Name" />
+                <input class="field-input" id="c2-emoji" type="text" value="👨" placeholder="Avatar" maxlength="2" />
+              </div>
+              <input class="field-input" id="c2-role" type="text" value="Product Designer · Google" placeholder="Title · Company" style="margin-bottom:6px"/>
+              <input class="field-input" id="c2-text" type="text" value="Great tool! The screenshot feature alone saves me 20 min per post. 🔥" placeholder="Comment text" />
+            </div>
+            <div class="field-group">
+              <label class="field-label">Comment 3 (optional)</label>
+              <div class="two-col" style="margin-bottom:6px">
+                <input class="field-input" id="c3-name" type="text" value="" placeholder="Name" />
+                <input class="field-input" id="c3-emoji" type="text" value="🧑" placeholder="Avatar" maxlength="2" />
+              </div>
+              <input class="field-input" id="c3-role" type="text" value="" placeholder="Title · Company" style="margin-bottom:6px"/>
+              <input class="field-input" id="c3-text" type="text" value="" placeholder="Leave blank to hide" />
+            </div>
+          </div>
+        </div>
+
+        <div class="composer-actions">
+          <button class="btn btn--screenshot" id="screenshot-btn-composer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Screenshot
+          </button>
+          <button class="btn btn--ghost" id="reset-btn">Reset</button>
+        </div>
+      </div>
+
+      <!-- PREVIEW PANEL -->
+      <div class="preview-panel reveal" style="transition-delay:.1s">
+        <div class="preview-header">
+          <div class="preview-label"><span class="live-dot"></span> Live Preview</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <div class="theme-switcher">
+              <button class="theme-btn active" id="theme-dark-btn">🌙 Dark</button>
+              <button class="theme-btn" id="theme-light-btn">☀️ Light</button>
+            </div>
+            <div class="screenshot-btn-wrap">
+              <button id="screenshot-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Screenshot
+              </button>
+              <div class="screenshot-success" id="screenshot-success">✓ Saved as PNG!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Device frame wrapper — this gets screenshotted -->
+        <div style="position:relative">
+          <div class="device-frame theme-dark" id="device-frame">
+            <!-- LinkedIn top bar -->
+            <div class="li-topbar">
+              <div class="li-logo">
+                <svg viewBox="0 0 24 24" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="#0a66c2"/></svg>
+              </div>
+              <div class="li-search-bar">🔍 Search</div>
+              <div class="li-nav-icons">
+                <div class="li-nav-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</div>
+                <div class="li-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Network</div>
+                <div class="li-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</div>
+              </div>
+            </div>
+
+            <!-- The live LinkedIn post card -->
+            <div class="li-feed-wrap">
+              <div class="li-card theme-dark" id="li-live-card">
+
+                <!-- Promoted label -->
+                <div class="li-promoted" id="li-promoted-bar">Promoted</div>
+
+                <!-- Post header -->
+                <div class="li-post-header">
+                  <div class="li-post-header-left">
+                    <div class="li-avatar">
+                      <div class="li-avatar-img" id="li-live-avatar" style="background:linear-gradient(135deg,#0a66c2,#00a0dc)">👤</div>
+                      <div class="li-avatar-badge" id="li-avatar-badge">
+                        <svg viewBox="0 0 24 24" width="10" height="10" fill="#fff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+                      </div>
+                    </div>
+                    <div class="li-user-info">
+                      <div class="li-user-name" id="li-live-name">Your Name <span class="li-degree" id="li-live-degree">• 1st</span></div>
+                      <div class="li-user-title" id="li-live-title">Senior Product Manager · TweetPreview</div>
+                      <div class="li-post-meta" id="li-live-meta"><span id="li-live-timestamp">Just now</span> · <span id="li-live-visibility" class="li-globe-icon">🌐</span></div>
+                    </div>
+                  </div>
+                  <div class="li-header-actions">
+                    <button class="li-follow-btn" id="li-live-follow"> Follow</button>
+                    <button class="li-more-btn theme-dark">···</button>
+                  </div>
+                </div>
+
+                <!-- Post body -->
+                <div class="li-post-body" id="li-live-body"></div>
+
+                <!-- See more -->
+                <div id="li-see-more-wrap" style="padding:0 16px 8px;display:none">
+                  <span class="li-see-more">…see more</span>
+                </div>
+
+                <!-- Image -->
+                <div class="li-post-img placeholder" id="li-post-img" style="display:none">
+                  <img id="li-img-el" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover" />
+                  <div id="li-img-placeholder" style="display:grid;place-items:center;flex-direction:column;gap:8px;width:100%;height:100%">
+                    <span style="font-size:2rem">🖼️</span>
+                    <span style="font-size:0.82rem">Your image appears here</span>
+                  </div>
+                </div>
+
+                <!-- Document card -->
+                <div class="li-document" id="li-document-card" style="display:none">
+                  <div class="li-document-inner">
+                    <div class="li-document-icon">📄</div>
+                    <div class="li-document-info">
+                      <h4 id="li-doc-title-display">My Presentation 2026.pdf</h4>
+                      <p id="li-doc-pages-display">24 slides</p>
+                      <div class="li-doc-badge">
+                        <svg viewBox="0 0 24 24" width="9" height="9" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        PDF Document
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Link preview -->
+                <div class="li-link-preview" id="li-link-card" style="display:none">
+                  <div class="li-link-img placeholder" id="li-link-img-el">🔗</div>
+                  <div class="li-link-info">
+                    <div class="li-link-source" id="li-link-source-display">TWEETPREVIEW.GITHUB.IO</div>
+                    <div class="li-link-title" id="li-link-title-display">LinkedIn Post Preview Tool – Free & Instant</div>
+                    <div class="li-link-desc" id="li-link-desc-display">Preview your LinkedIn post before publishing.</div>
+                  </div>
+                </div>
+
+                <!-- Poll -->
+                <div id="li-poll-card" style="display:none; margin:0 16px 12px; border-radius:8px; overflow:hidden; border:1px solid">
+                  <div style="padding:14px 16px;">
+                    <div class="li-poll-q" id="li-poll-q-display" style="font-weight:700;font-size:0.95rem;margin-bottom:12px">What's your #1 challenge with LinkedIn content?</div>
+                    <div id="li-poll-options"></div>
+                    <div style="font-size:0.75rem;margin-top:8px" id="li-poll-duration-display">1 week left · 1,247 votes</div>
+                  </div>
+                </div>
+
+                <!-- Reactions bar -->
+                <div class="li-reactions-bar" id="li-reactions-bar">
+                  <div style="display:flex;align-items:center;gap:6px">
+                    <div class="li-reaction-emojis" id="li-reaction-emojis-display"></div>
+                    <span id="li-total-reactions-display">0</span>
+                  </div>
+                  <div style="display:flex;gap:6px">
+                    <span class="li-comment-count" id="li-comment-count-display">0 comments</span>
+                    <span>·</span>
+                    <span id="li-reposts-display">0 reposts</span>
+                  </div>
+                </div>
+
+                <div class="li-divider" id="li-divider-1"></div>
+
+                <!-- Actions -->
+                <div class="li-actions" id="li-actions-bar">
+                  <button class="li-action-btn theme-dark" id="li-like-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                    Like
+                  </button>
+                  <button class="li-action-btn theme-dark" id="li-comment-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Comment
+                  </button>
+                  <button class="li-action-btn theme-dark" id="li-repost-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                    Repost
+                  </button>
+                  <button class="li-action-btn theme-dark" id="li-send-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    Send
+                  </button>
+                </div>
+
+                <div class="li-divider" id="li-divider-2"></div>
+
+                <!-- Comments section -->
+                <div class="li-comments" id="li-comments-section">
+                  <div id="li-comments-list"></div>
+                  <div class="li-reply-input">
+                    <div class="li-comment-avatar">👤</div>
+                    <input class="li-reply-box theme-dark" placeholder="Add a comment…" readonly />
+                  </div>
+                </div>
+
+              </div><!-- end li-live-card -->
+            </div><!-- end li-feed-wrap -->
+          </div><!-- end device-frame -->
+
+          <!-- Loading overlay -->
+          <div class="screenshot-loading" id="screenshot-loading">
+            <div class="screenshot-spinner"></div>
+          </div>
+        </div>
+
+      </div><!-- end preview-panel -->
+    </div><!-- end tool-layout -->
+  </div>
+</section>
+
+<!-- ========================================
+     HOW IT WORKS
+     ======================================== -->
+<section class="section" id="how-it-works" aria-label="How to use LinkedIn Post Preview">
+  <div class="container">
+    <div class="section-label">Simple & Fast</div>
+    <h2 class="section-title">How to Preview Your LinkedIn Post</h2>
+    <p class="section-sub">From blank page to pixel-perfect preview in four simple steps — then screenshot and share with your team or clients.</p>
+    <div class="how-grid">
+      <div class="how-step reveal">
+        <div class="how-num">01</div>
+        <h3>Choose Post Type</h3>
+        <p>Select from five post types: text, image, document carousel, link preview, or poll. Each renders with accurate LinkedIn UI components.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.1s">
+        <div class="how-num">02</div>
+        <h3>Write Your Content</h3>
+        <p>Type your post text with hashtags, mentions, and line breaks. The preview updates live as you write — no refresh needed.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.2s">
+        <div class="how-num">03</div>
+        <h3>Customize Details</h3>
+        <p>Set your name, title, reactions, comment counts, connection degree, and toggle features like promoted label and "see more" truncation.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.3s">
+        <div class="how-num">04</div>
+        <h3>Screenshot & Share</h3>
+        <p>Click the Screenshot button to instantly download a PNG. Share with your team for approvals, or use in presentations and reports.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     DESCRIPTION / ABOUT
+     ======================================== -->
+<section class="section section--dark" id="about" aria-label="About LinkedIn Post Preview Tool">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">What Is This?</div>
+        <h2>The Most Accurate LinkedIn Post Preview Available</h2>
+        <p>
+          Your LinkedIn post is more than words — it's layout, first impressions, hashtag visibility, image framing, and how your name and title appear next to your content. All of that shapes engagement before a single person reads your copy.
+        </p>
+        <p>
+          TweetPreview's LinkedIn Post Preview renders your post in pixel-accurate LinkedIn UI for both dark and light modes — so what you build in the composer is exactly what your connections see in their feed.
+        </p>
+        <p>
+          The screenshot button converts the live preview directly into a downloadable PNG. Share it with your team for approval, add it to a pitch deck, or keep it as a record of your campaign content — all without logging into LinkedIn.
+        </p>
+        <ul class="checklist">
+          <li>Real-time rendering — no submit button, no reload</li>
+          <li>5 post types: text, image, document, link preview, poll</li>
+          <li>Dark mode and light mode — pixel-accurate LinkedIn styling</li>
+          <li>One-click PNG screenshot download via html2canvas</li>
+          <li>All 6 LinkedIn reactions with custom counts</li>
+          <li>Connection degree badge (1st, 2nd, 3rd)</li>
+          <li>Custom comments with name, title & avatar</li>
+          <li>Promoted / Sponsored label toggle</li>
+          <li>See more text truncation toggle</li>
+          <li>100% private — zero data stored, zero sent to servers</li>
+        </ul>
+      </div>
+      <div class="about-visual reveal" style="transition-delay:.12s">
+        <div class="about-card">
+          <div class="about-card-title">Features at a Glance</div>
+          <div>
+            <span class="feat-pill"><span>⚡</span> Live Preview</span>
+            <span class="feat-pill"><span>📸</span> Screenshot</span>
+            <span class="feat-pill"><span>🌙</span> Dark Mode</span>
+            <span class="feat-pill"><span>☀️</span> Light Mode</span>
+            <span class="feat-pill"><span>📝</span> Text Post</span>
+            <span class="feat-pill"><span>🖼️</span> Image Post</span>
+            <span class="feat-pill"><span>📄</span> Document</span>
+            <span class="feat-pill"><span>🔗</span> Link Card</span>
+            <span class="feat-pill"><span>📊</span> Poll</span>
+            <span class="feat-pill"><span>👍</span> Reactions</span>
+            <span class="feat-pill"><span>💬</span> Comments</span>
+            <span class="feat-pill"><span>🏆</span> Connection Degree</span>
+            <span class="feat-pill"><span>📢</span> Promoted Toggle</span>
+            <span class="feat-pill"><span>👁️</span> See More Toggle</span>
+            <span class="feat-pill"><span>🌐</span> Visibility Badge</span>
+            <span class="feat-pill"><span>🔒</span> Zero Data Storage</span>
+            <span class="feat-pill"><span>🚀</span> No Login</span>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-title">Who Uses This Tool?</div>
+          <div class="use-case"><span class="use-case-icon">📱</span><div><strong>Social Media Managers</strong><span>Show clients approved posts before they go live — screenshot and send.</span></div></div>
+          <div class="use-case"><span class="use-case-icon">📊</span><div><strong>Marketing Teams</strong><span>A/B test post formats and copy with real visual output before scheduling.</span></div></div>
+          <div class="use-case"><span class="use-case-icon">✍️</span><div><strong>Content Creators</strong><span>Polish every post — line breaks, hashtags, "see more" cut-off — before publishing.</span></div></div>
+          <div class="use-case"><span class="use-case-icon">🏢</span><div><strong>Recruiters & HR</strong><span>Preview job posts and announcements with exact LinkedIn formatting before approval.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     TOOLS CARDS
+     ======================================== -->
+<section class="section" id="tools" aria-label="All Social Media Preview Tools">
+  <div class="container">
+    <div class="section-label">Full Toolkit</div>
+    <h2 class="section-title">More Preview Tools</h2>
+    <p class="section-sub">TweetPreview covers every major platform. One toolkit for total confidence across your entire content strategy.</p>
+    <div class="tools-grid" id="tools-grid"></div>
+  </div>
+</section>
+
+<!-- ========================================
+     FAQ
+     ======================================== -->
+<section class="section section--dark" id="faq" aria-label="LinkedIn Post Preview FAQ">
+  <div class="container">
+    <div class="section-label">Got Questions?</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub" style="margin-bottom:40px">Everything you need to know about the LinkedIn Post Preview tool.</p>
+    <div class="faq-wrap" id="faq-wrap"></div>
+  </div>
+</section>
+
+<!-- ========================================
+     CTA BANNER
+     ======================================== -->
+<section class="cta-banner">
+  <div class="orb orb-1" style="opacity:.2;position:absolute;top:-80px;right:-60px"></div>
+  <div class="container cta-inner">
+    <h2>Ready to preview your LinkedIn post?</h2>
+    <p>Free, instant, and 100% private. Screenshot with one click — no account ever needed.</p>
+    <a href="#preview-tool" class="btn btn--primary">Start Previewing Now →</a>
+  </div>
+</section>
+
+<!-- ========================================
+     FOOTER
+     ======================================== -->
+<footer class="site-footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.12rem;color:var(--text)">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.265 5.643L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg></div>
+          TweetPreview
+        </a>
+        <p>The easiest way to preview social media posts before publishing. Free, private, always accurate.</p>
+        <div class="footer-socials">
+          <a href="https://twitter.com/tweetpreview" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.265 5.643L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+          </a>
+          <a href="https://github.com/tweetpreview" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-widget">
+        <h4>Preview Tools</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#preview-tool">Twitter / X Preview</a></li>
+          <li><a href="fb-post.html">Facebook Preview</a></li>
+          <li><a href="linkedin-post.html">LinkedIn Preview</a></li>
+          <li><a href="index.html#tools">Instagram Preview</a></li>
+          <li><a href="index.html#tools">TikTok Preview</a></li>
+          <li><a href="index.html#tools">YouTube Preview</a></li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#about">About the Tool</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h4>Stay Updated</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.65;margin-bottom:12px">Get notified when we add new platforms. No spam, ever.</p>
+        <div class="footer-newsletter">
+          <input type="email" id="footer-email" placeholder="you@example.com" aria-label="Email" />
+          <button id="footer-subscribe-btn">Subscribe Free</button>
+        </div>
+        <p style="font-size:0.7rem;color:var(--text-faint);margin-top:7px">🔒 No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TweetPreview. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================================
+     JAVASCRIPT
+     ======================================== -->
+<script>
+'use strict';
+
+/* ---- HEADER ---- */
+const hdr = document.getElementById('site-header');
+window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 40));
+const ham = document.getElementById('hamburger');
+const mNav = document.getElementById('mobile-nav');
+ham.addEventListener('click', () => { const o = mNav.classList.toggle('open'); ham.setAttribute('aria-expanded', o); });
+mNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mNav.classList.remove('open'); ham.setAttribute('aria-expanded','false'); }));
+
+/* ---- SMOOTH SCROLL ---- */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const t = document.querySelector(a.getAttribute('href'));
+  if (!t) return;
+  e.preventDefault();
+  t.scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ---- SCROLL REVEAL ---- */
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); rvObs.unobserve(en.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rvObs.observe(el));
+
+/* ---- TABS ---- */
+document.querySelectorAll('.ctab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.ctab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.ctab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* ---- TOGGLE HELPER ---- */
+function setupToggle(id, cb) {
+  const btn = document.getElementById(id);
+  if (!btn) return btn;
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('on');
+    btn.setAttribute('aria-pressed', btn.classList.contains('on'));
+    if (cb) cb(btn.classList.contains('on'));
+  });
+  return btn;
+}
+
+/* ---- THEME ---- */
+let currentTheme = 'dark';
+function applyTheme(theme) {
+  currentTheme = theme;
+  const card = document.getElementById('li-live-card');
+  const frame = document.getElementById('device-frame');
+  // Card theme class
+  card.className = 'li-card theme-' + theme;
+  // Frame
+  frame.className = 'device-frame theme-' + theme;
+  // Topbar & search
+  const topbar = frame.querySelector('.li-topbar');
+  const search = frame.querySelector('.li-search-bar');
+  if (theme === 'dark') {
+    topbar.style.borderBottomColor = '#38434f';
+    search.style.background = '#283039';
+    search.style.color = 'rgba(255,255,255,0.5)';
+  } else {
+    topbar.style.borderBottomColor = '#e0e0e0';
+    search.style.background = '#eef3f8';
+    search.style.color = 'rgba(0,0,0,0.5)';
+  }
+  updatePreview();
+}
+document.getElementById('theme-dark-btn').addEventListener('click', () => {
+  document.getElementById('theme-dark-btn').classList.add('active');
+  document.getElementById('theme-light-btn').classList.remove('active');
+  applyTheme('dark');
+});
+document.getElementById('theme-light-btn').addEventListener('click', () => {
+  document.getElementById('theme-light-btn').classList.add('active');
+  document.getElementById('theme-dark-btn').classList.remove('active');
+  applyTheme('light');
+});
+
+/* ---- TEXT HELPERS ---- */
+function tc() { return currentTheme === 'dark' ? 'rgba(255,255,255,0.9)' : 'rgba(0,0,0,0.9)'; }
+function mc() { return currentTheme === 'dark' ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'; }
+function bc() { return currentTheme === 'dark' ? '#38434f' : '#e0e0e0'; }
+function cardBg() { return currentTheme === 'dark' ? '#283039' : '#eef3f8'; }
+
+function formatLiText(text) {
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#\w+)/g, '<span class="li-hashtag">$1</span>')
+    .replace(/(@\w[\w.]*)/g, '<span class="li-hashtag">$1</span>')
+    .replace(/(https?:\/\/\S+)/g, '<a href="$1" class="li-hashtag" target="_blank">$1</a>');
+}
+
+/* ---- MAIN UPDATE ---- */
+function updatePreview() {
+  // --- Author ---
+  const nameEl = document.getElementById('li-live-name');
+  const name = document.getElementById('li-name').value || 'Your Name';
+  const degree = document.querySelector('#degree-opts .opt-pill.selected')?.dataset.degree || '• 1st';
+  nameEl.style.color = tc();
+  nameEl.childNodes[0].textContent = name + ' ';
+  const degreeSpan = document.getElementById('li-live-degree');
+  degreeSpan.textContent = degree;
+
+  const titleEl = document.getElementById('li-live-title');
+  titleEl.textContent = document.getElementById('li-title').value || '';
+  titleEl.style.color = mc();
+
+  const metaEl = document.getElementById('li-live-meta');
+  metaEl.style.color = mc();
+  document.getElementById('li-live-timestamp').textContent = document.getElementById('li-timestamp').value || 'Just now';
+  const vis = document.querySelector('#visibility-opts .opt-pill.selected')?.dataset.vis || '🌐';
+  document.getElementById('li-live-visibility').textContent = vis;
+
+  // Follow btn
+  const followBtn = document.getElementById('li-live-follow');
+  const showFollow = document.getElementById('toggle-follow').classList.contains('on');
+  followBtn.style.display = showFollow ? '' : 'none';
+
+  // LI badge
+  const liBadge = document.getElementById('li-avatar-badge');
+  const showBadge = document.getElementById('toggle-li-badge').classList.contains('on');
+  liBadge.style.display = showBadge ? '' : 'none';
+
+  // Avatar
+  const avatarEl = document.getElementById('li-live-avatar');
+  const selEmoji = document.querySelector('#avatar-emojis .emoji-btn.selected');
+  const selColor = document.querySelector('#avatar-colors .color-swatch.selected');
+  if (selEmoji) avatarEl.textContent = selEmoji.dataset.emoji;
+  if (selColor) avatarEl.style.background = selColor.dataset.color;
+
+  // --- Post body ---
+  const rawText = document.getElementById('li-text').value;
+  const bodyEl = document.getElementById('li-live-body');
+  const truncate = document.getElementById('toggle-truncate').classList.contains('on');
+  const seeMoreWrap = document.getElementById('li-see-more-wrap');
+
+  if (truncate && rawText.length > 200) {
+    const shortened = rawText.substring(0, 200).replace(/\n/g, '<br>');
+    bodyEl.innerHTML = formatLiText(shortened) + '…';
+    seeMoreWrap.style.display = 'block';
+    seeMoreWrap.style.color = mc();
+  } else {
+    bodyEl.innerHTML = formatLiText(rawText).replace(/\n/g, '<br>');
+    seeMoreWrap.style.display = 'none';
+  }
+  bodyEl.style.color = tc();
+
+  // --- Post type ---
+  const postType = document.querySelector('#post-type-opts .opt-pill.selected')?.dataset.type || 'text';
+
+  // Show/hide media sections in composer
+  document.getElementById('media-image-section').style.display = postType === 'image' ? 'block' : 'none';
+  document.getElementById('media-document-section').style.display = postType === 'document' ? 'block' : 'none';
+  document.getElementById('media-link-section').style.display = postType === 'link' ? 'block' : 'none';
+  document.getElementById('media-poll-section').style.display = postType === 'poll' ? 'block' : 'none';
+
+  // Preview media
+  const imgContainer = document.getElementById('li-post-img');
+  const docCard = document.getElementById('li-document-card');
+  const linkCard = document.getElementById('li-link-card');
+  const pollCard = document.getElementById('li-poll-card');
+
+  imgContainer.style.display = 'none';
+  docCard.style.display = 'none';
+  linkCard.style.display = 'none';
+  pollCard.style.display = 'none';
+
+  if (postType === 'image') {
+    imgContainer.style.display = 'block';
+    const imgEl = document.getElementById('li-img-el');
+    const placeholder = document.getElementById('li-img-placeholder');
+    if (imgEl.src && imgEl.src !== window.location.href) {
+      imgEl.style.display = 'block';
+      placeholder.style.display = 'none';
+    } else {
+      imgEl.style.display = 'none';
+      placeholder.style.display = 'grid';
+      imgContainer.style.background = cardBg();
+      imgContainer.style.color = mc();
+    }
+  } else if (postType === 'document') {
+    docCard.style.display = 'block';
+    docCard.style.borderColor = bc();
+    docCard.style.background = cardBg();
+    document.getElementById('li-doc-title-display').textContent = document.getElementById('doc-title').value || 'Document.pdf';
+    document.getElementById('li-doc-title-display').style.color = tc();
+    document.getElementById('li-doc-pages-display').textContent = document.getElementById('doc-pages').value || '1 page';
+    document.getElementById('li-doc-pages-display').style.color = mc();
+  } else if (postType === 'link') {
+    linkCard.style.display = 'block';
+    const linkImg = document.getElementById('li-link-img-el');
+    linkImg.style.background = cardBg();
+    linkImg.style.color = mc();
+    document.getElementById('li-link-info').style.background = cardBg();
+    document.getElementById('li-link-info').style.borderColor = bc();
+    document.getElementById('li-link-source-display').textContent = (document.getElementById('link-source').value || 'example.com').toUpperCase();
+    document.getElementById('li-link-source-display').style.color = mc();
+    document.getElementById('li-link-title-display').textContent = document.getElementById('link-title').value || 'Article Title';
+    document.getElementById('li-link-title-display').style.color = tc();
+    document.getElementById('li-link-desc-display').textContent = document.getElementById('link-desc').value || '';
+    document.getElementById('li-link-desc-display').style.color = mc();
+  } else if (postType === 'poll') {
+    pollCard.style.display = 'block';
+    pollCard.style.borderColor = bc();
+    const pollQ = document.getElementById('li-poll-q-display');
+    pollQ.textContent = document.getElementById('poll-q').value || 'Your poll question';
+    pollQ.style.color = tc();
+    const opts = ['poll-opt1','poll-opt2','poll-opt3','poll-opt4'].map(id => document.getElementById(id).value).filter(Boolean);
+    const pollOpts = document.getElementById('li-poll-options');
+    const total = 1247;
+    const widths = [38, 28, 22, 12];
+    pollOpts.innerHTML = opts.map((o, i) => `
+      <div style="margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;margin-bottom:3px">
+          <span style="color:${tc()};font-weight:${i===0?700:400}">${o}</span>
+          <span style="color:${mc()}">${widths[i]}%</span>
+        </div>
+        <div style="height:6px;background:${cardBg()};border-radius:3px;overflow:hidden">
+          <div style="height:100%;width:${widths[i]}%;background:${i===0 ? '#0a66c2' : cardBg().replace('#eef3f8','#c9d9e8').replace('#283039','#3a4a5a')};border-radius:3px;border:1px solid ${bc()}"></div>
+        </div>
+      </div>
+    `).join('');
+    const durEl = document.getElementById('li-poll-duration-display');
+    durEl.textContent = (document.getElementById('poll-duration').value || '1 week left') + ' · ' + total.toLocaleString() + ' votes';
+    durEl.style.color = mc();
+  }
+
+  // --- Promoted ---
+  const promotedBar = document.getElementById('li-promoted-bar');
+  const isPromoted = document.getElementById('toggle-promoted').classList.contains('on');
+  promotedBar.style.display = isPromoted ? 'block' : 'none';
+
+  // --- Reactions ---
+  const showReactions = document.getElementById('toggle-reactions').classList.contains('on');
+  const reactionsBar = document.getElementById('li-reactions-bar');
+  reactionsBar.style.display = showReactions ? 'flex' : 'none';
+
+  if (showReactions) {
+    const activeIcons = Array.from(document.querySelectorAll('#reaction-icons-toggle .emoji-btn.selected')).map(b => b.dataset.r);
+    const emojiContainer = document.getElementById('li-reaction-emojis-display');
+    const bgColors = { '👍':'#0a66c2','❤️':'#df704d','🎉':'#f5bb5c','💡':'#e7c600','🤝':'#7fc37e','😄':'#f5bb5c' };
+    emojiContainer.innerHTML = activeIcons.slice(0,3).map(e =>
+      `<div class="li-reaction-emoji theme-${currentTheme}" style="background:${bgColors[e]||'#0a66c2'}">${e}</div>`
+    ).join('');
+
+    const vals = ['r-like','r-love','r-celebrate','r-insightful','r-support','r-funny'].map(id => {
+      const v = document.getElementById(id).value.trim();
+      if (!v) return 0;
+      return parseFloat(v.replace(/K$/i,'')) * (v.toUpperCase().endsWith('K') ? 1000 : 1) || 0;
+    });
+    const total = vals.reduce((a,b)=>a+b,0);
+    const totalEl = document.getElementById('li-total-reactions-display');
+    totalEl.textContent = total >= 1000 ? (total/1000).toFixed(1).replace('.0','')+'K' : total||'0';
+    totalEl.style.color = mc();
+
+    document.getElementById('li-comment-count-display').textContent = (document.getElementById('li-comment-count').value||'0') + ' comments';
+    document.getElementById('li-comment-count-display').style.color = mc();
+    document.getElementById('li-reposts-display').textContent = (document.getElementById('li-reposts').value||'0') + ' reposts';
+    document.getElementById('li-reposts-display').style.color = mc();
+    reactionsBar.style.color = mc();
+  }
+
+  // Dividers
+  document.getElementById('li-divider-1').style.background = bc();
+  document.getElementById('li-divider-2').style.background = bc();
+
+  // --- Actions ---
+  const showActions = document.getElementById('toggle-actions').classList.contains('on');
+  document.getElementById('li-actions-bar').style.display = showActions ? 'flex' : 'none';
+  ['li-like-btn','li-comment-btn','li-repost-btn','li-send-btn'].forEach(id => {
+    const btn = document.getElementById(id);
+    btn.className = 'li-action-btn theme-' + currentTheme;
+  });
+
+  // --- More btn ---
+  document.querySelector('.li-more-btn').className = 'li-more-btn theme-' + currentTheme;
+
+  // --- Comments ---
+  const showComments = document.getElementById('toggle-comments').classList.contains('on');
+  const commentsSec = document.getElementById('li-comments-section');
+  commentsSec.style.display = showComments ? 'block' : 'none';
+
+  if (showComments) {
+    const comments = [
+      { name: document.getElementById('c1-name').value, emoji: document.getElementById('c1-emoji').value, role: document.getElementById('c1-role').value, text: document.getElementById('c1-text').value },
+      { name: document.getElementById('c2-name').value, emoji: document.getElementById('c2-emoji').value, role: document.getElementById('c2-role').value, text: document.getElementById('c2-text').value },
+      { name: document.getElementById('c3-name').value, emoji: document.getElementById('c3-emoji').value, role: document.getElementById('c3-role').value, text: document.getElementById('c3-text').value },
+    ].filter(c => c.text && c.text.trim());
+
+    document.getElementById('li-comments-list').innerHTML = comments.map(c => `
+      <div class="li-comment">
+        <div class="li-comment-avatar" style="background:${cardBg()}">${c.emoji||'👤'}</div>
+        <div class="li-comment-bubble theme-${currentTheme}">
+          <div class="li-comment-name">${c.name||'User'}</div>
+          ${c.role ? `<span class="li-comment-role">${c.role}</span>` : ''}
+          <div class="li-comment-text">${c.text}</div>
+        </div>
+      </div>
+    `).join('');
+
+    const replyBox = commentsSec.querySelector('.li-reply-box');
+    replyBox.className = 'li-reply-box theme-' + currentTheme;
+    replyBox.style.borderColor = bc();
+    const replyAvatar = commentsSec.querySelector('.li-comment-avatar:last-child') || commentsSec.querySelector('.li-reply-input .li-comment-avatar');
+    if (replyAvatar) replyAvatar.style.background = cardBg();
+  }
+}
+
+/* ---- CHAR COUNT ---- */
+const liTextarea = document.getElementById('li-text');
+const charCountEl = document.getElementById('li-char-count');
+function updateCharCount() {
+  const len = liTextarea.value.length;
+  const remaining = 3000 - len;
+  charCountEl.textContent = len + ' / 3000';
+  charCountEl.className = 'char-count' + (remaining < 100 ? ' warn' : '') + (remaining < 0 ? ' over' : '');
+}
+liTextarea.addEventListener('input', () => { updateCharCount(); updatePreview(); });
+
+/* ---- LIVE INPUTS ---- */
+['li-name','li-title','li-timestamp','doc-title','doc-pages','link-source','link-title','link-desc',
+ 'poll-q','poll-opt1','poll-opt2','poll-opt3','poll-opt4','poll-duration',
+ 'r-like','r-love','r-celebrate','r-insightful','r-support','r-funny',
+ 'li-comment-count','li-reposts',
+ 'c1-name','c1-emoji','c1-role','c1-text','c2-name','c2-emoji','c2-role','c2-text','c3-name','c3-emoji','c3-role','c3-text'
+].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', updatePreview);
+});
+
+/* ---- OPTION PILLS ---- */
+function setupPillGroup(groupId, cb) {
+  document.querySelectorAll(`#${groupId} .opt-pill`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll(`#${groupId} .opt-pill`).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      if (cb) cb(btn);
+      updatePreview();
+    });
+  });
+}
+setupPillGroup('post-type-opts');
+setupPillGroup('visibility-opts');
+setupPillGroup('degree-opts');
+
+/* ---- TOGGLES ---- */
+setupToggle('toggle-follow', () => updatePreview());
+setupToggle('toggle-li-badge', () => updatePreview());
+setupToggle('toggle-reactions', () => updatePreview());
+setupToggle('toggle-actions', () => updatePreview());
+setupToggle('toggle-promoted', () => updatePreview());
+setupToggle('toggle-truncate', () => updatePreview());
+setupToggle('toggle-comments', () => updatePreview());
+
+/* ---- AVATAR EMOJI ---- */
+document.querySelectorAll('#avatar-emojis .emoji-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#avatar-emojis .emoji-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    updatePreview();
+  });
+});
+
+/* ---- AVATAR COLOR ---- */
+document.querySelectorAll('#avatar-colors .color-swatch').forEach(sw => {
+  sw.addEventListener('click', () => {
+    document.querySelectorAll('#avatar-colors .color-swatch').forEach(s => s.classList.remove('selected'));
+    sw.classList.add('selected');
+    updatePreview();
+  });
+});
+
+/* ---- REACTION ICON TOGGLE ---- */
+document.querySelectorAll('#reaction-icons-toggle .emoji-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('selected');
+    updatePreview();
+  });
+});
+
+/* ---- IMAGE UPLOAD ---- */
+function handleImageFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const thumb = document.getElementById('image-thumb');
+    const imgEl = document.getElementById('li-img-el');
+    thumb.src = ev.target.result;
+    thumb.style.display = 'block';
+    imgEl.src = ev.target.result;
+    // auto-switch to image type
+    document.querySelectorAll('#post-type-opts .opt-pill').forEach(b => b.classList.remove('selected'));
+    document.querySelector('#post-type-opts .opt-pill[data-type="image"]').classList.add('selected');
+    updatePreview();
+  };
+  reader.readAsDataURL(file);
+}
+document.getElementById('image-upload').addEventListener('change', e => handleImageFile(e.target.files[0]));
+const dropArea = document.getElementById('image-drop');
+['dragenter','dragover'].forEach(ev => dropArea.addEventListener(ev, e => { e.preventDefault(); dropArea.classList.add('dragover'); }));
+['dragleave','drop'].forEach(ev => dropArea.addEventListener(ev, e => { e.preventDefault(); dropArea.classList.remove('dragover'); }));
+dropArea.addEventListener('drop', e => handleImageFile(e.dataTransfer.files[0]));
+
+/* =============================================
+   SCREENSHOT FUNCTIONALITY (html2canvas)
+   ============================================= */
+async function takeScreenshot() {
+  const screenshotBtns = [document.getElementById('screenshot-btn'), document.getElementById('screenshot-btn-composer')];
+  const loading = document.getElementById('screenshot-loading');
+  const successBadge = document.getElementById('screenshot-success');
+  const target = document.getElementById('device-frame');
+
+  // Disable buttons & show loading
+  screenshotBtns.forEach(b => { b.disabled = true; b.textContent = ''; b.innerHTML = '<div style="width:14px;height:14px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite"></div> Processing…'; });
+  loading.classList.add('show');
+
+  try {
+    const canvas = await html2canvas(target, {
+      scale: 2,              // 2x for retina quality
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: currentTheme === 'dark' ? '#1b1f23' : '#f3f2ef',
+      logging: false,
+      removeContainer: true,
+      imageTimeout: 8000,
+    });
+
+    // Download
+    const timestamp = new Date().toISOString().slice(0,10);
+    const link = document.createElement('a');
+    link.download = `linkedin-post-preview-${timestamp}.png`;
+    link.href = canvas.toDataURL('image/png', 1.0);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Success feedback
+    successBadge.classList.add('show');
+    setTimeout(() => successBadge.classList.remove('show'), 2500);
+
+  } catch (err) {
+    console.error('Screenshot failed:', err);
+    // Fallback: show helpful message
+    alert('Screenshot ready! Use your browser\'s built-in screenshot tool (Cmd+Shift+4 on Mac, Win+Shift+S on Windows) to capture the preview.');
+  } finally {
+    loading.classList.remove('show');
+    screenshotBtns.forEach(b => {
+      b.disabled = false;
+      b.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="15" height="15"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Screenshot`;
+    });
+    // Fix composer btn
+    document.getElementById('screenshot-btn-composer').innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Screenshot`;
+  }
+}
+
+document.getElementById('screenshot-btn').addEventListener('click', takeScreenshot);
+document.getElementById('screenshot-btn-composer').addEventListener('click', takeScreenshot);
+
+/* ---- RESET ---- */
+document.getElementById('reset-btn').addEventListener('click', () => {
+  document.getElementById('li-name').value = 'Your Name';
+  document.getElementById('li-title').value = 'Senior Product Manager · TweetPreview';
+  document.getElementById('li-text').value = 'Excited to share something I\'ve been working on — a free LinkedIn Post Preview tool! 🚀\n\nNow you can see exactly how your post looks before hitting publish. Great for:\n✅ Checking your formatting\n✅ Previewing hashtags\n✅ Client approvals\n\nTry it free at TweetPreview. #LinkedIn #SocialMedia #ContentMarketing';
+  document.getElementById('li-timestamp').value = 'Just now';
+  document.getElementById('li-comment-count').value = '132';
+  document.getElementById('li-reposts').value = '48';
+  document.getElementById('r-like').value = '847';
+  document.getElementById('r-love').value = '214';
+  document.getElementById('r-celebrate').value = '156';
+  document.getElementById('r-insightful').value = '89';
+  document.getElementById('r-support').value = '43';
+  document.getElementById('r-funny').value = '';
+  document.getElementById('image-thumb').style.display = 'none';
+  document.getElementById('li-img-el').src = '';
+  // Reset post type to text
+  document.querySelectorAll('#post-type-opts .opt-pill').forEach(b => b.classList.remove('selected'));
+  document.querySelector('#post-type-opts .opt-pill[data-type="text"]').classList.add('selected');
+  // Reset theme
+  applyTheme('dark');
+  document.getElementById('theme-dark-btn').classList.add('active');
+  document.getElementById('theme-light-btn').classList.remove('active');
+  updateCharCount();
+  updatePreview();
+});
+
+/* ---- NEWSLETTER ---- */
+document.getElementById('footer-subscribe-btn').addEventListener('click', () => {
+  const email = document.getElementById('footer-email').value.trim();
+  const btn = document.getElementById('footer-subscribe-btn');
+  if (!email || !email.includes('@')) {
+    btn.textContent = 'Enter valid email';
+    btn.style.background = '#ef4444';
+    setTimeout(() => { btn.textContent = 'Subscribe Free'; btn.style.background = ''; }, 2000);
+    return;
+  }
+  btn.textContent = '✓ Subscribed!';
+  btn.style.background = '#22c55e';
+  document.getElementById('footer-email').value = '';
+  setTimeout(() => { btn.textContent = 'Subscribe Free'; btn.style.background = ''; }, 3000);
+});
+
+/* ---- TOOLS CARDS ---- */
+(function() {
+  const tools = [
+    { name:'Twitter / X', desc:'Preview tweets with hashtags, mentions, verified badge, and thread mode. Real-time.', color:'#1d9bf0', link:'index.html#preview-tool', text:'Open Twitter Preview →', badge:'Popular',
+      icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.265 5.643L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>` },
+    { name:'Facebook', desc:'See your Facebook post with reactions, comments, link cards, and image previews.', color:'#1877f2', link:'fb-post.html', text:'Open Facebook Preview →', badge:null,
+      icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>` },
+    { name:'LinkedIn', desc:'Pixel-accurate LinkedIn preview with screenshot download. You are here!', color:'#0a66c2', link:'linkedin-post.html', text:'You are here ✓', badge:'Current',
+      icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>` },
+    { name:'Instagram', desc:'Check your Instagram captions, hashtag layout, and post framing before going live.', color:'#e1306c', link:'index.html#tools', text:'Open Instagram Preview →', badge:null,
+      icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>` },
+    { name:'TikTok', desc:'Preview TikTok captions and hashtag stacks as they appear before your video goes live.', color:'#ff0050', link:'index.html#tools', text:'Open TikTok Preview →', badge:'New',
+      icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>` },
+    { name:'YouTube', desc:'Preview YouTube video titles, community posts, and descriptions with channel branding.', color:'#ff0000', link:'index.html#tools', text:'Open YouTube Preview →', badge:null,
+      icon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>` },
+  ];
+  const grid = document.getElementById('tools-grid');
+  tools.forEach((t, i) => {
+    const card = document.createElement('div');
+    card.className = 'tool-card reveal';
+    card.style.cssText = `--card-color:${t.color};transition-delay:${i*0.07}s`;
+    card.innerHTML = `
+      <div class="tool-card__icon" style="color:${t.color}">${t.icon}</div>
+      <div class="tool-card__name">${t.name}${t.badge?`<span style="display:inline-block;margin-left:7px;font-size:0.62rem;font-weight:700;background:${t.color}22;color:${t.color};border:1px solid ${t.color}44;border-radius:99px;padding:2px 7px;vertical-align:middle">${t.badge}</span>`:''}</div>
+      <div class="tool-card__desc">${t.desc}</div>
+      <a href="${t.link}" class="tool-card__link">${t.text}</a>
+    `;
+    grid.appendChild(card);
+    rvObs.observe(card);
+  });
+})();
+
+/* ---- FAQ ---- */
+(function() {
+  const faqs = [
+    { q:'Is the LinkedIn post preview tool free?', a:'Yes — completely free, forever. No premium plan, no account, no credit card. Open and use immediately.' },
+    { q:'How does the screenshot feature work?', a:'Click the "Screenshot" button and the tool uses html2canvas to render the LinkedIn post preview into a high-resolution PNG image that downloads directly to your device.' },
+    { q:'Does the screenshot include the full post?', a:'Yes. The screenshot captures the entire device frame including the LinkedIn topbar, post card, reactions, and comments as shown in the preview panel.' },
+    { q:'How accurate is the LinkedIn post preview?', a:'Very accurate. We use pixel-matched LinkedIn UI styles including fonts, spacing, colors, and component layout for both dark mode and light mode. We update it when LinkedIn changes their design.' },
+    { q:'Can I preview image and document posts?', a:'Yes. Switch to the "Image" post type and upload your own image or use the placeholder. For documents, enter your PDF title and slide count to see the document card preview.' },
+    { q:'What is the connection degree badge?', a:'LinkedIn shows 1st, 2nd, or 3rd next to a profile name based on how closely you\'re connected. You can simulate any degree in the Author tab.' },
+    { q:'Can I add custom comments to the preview?', a:'Yes. In the Comments tab you can add up to 3 custom comments with names, job titles, avatars, and text — rendered exactly as LinkedIn displays them.' },
+    { q:'Does TweetPreview store my post content?', a:'Never. All rendering and screenshot generation happens entirely in your browser. No content is ever sent to a server. Your drafts are 100% private.' },
+    { q:'Can I preview a LinkedIn post in light mode?', a:'Yes. Click the ☀️ Light button above the preview to switch to LinkedIn\'s light theme. Both modes match LinkedIn\'s actual design system precisely.' },
+    { q:'What LinkedIn reactions does the tool support?', a:'All six: Like 👍, Love ❤️, Celebrate 🎉, Insightful 💡, Support 🤝, and Funny 😄. Set custom counts for each and toggle which reaction icons appear in the preview.' },
+  ];
+  const wrap = document.getElementById('faq-wrap');
+  const col1 = document.createElement('div'); col1.className = 'faq-col reveal';
+  const col2 = document.createElement('div'); col2.className = 'faq-col reveal'; col2.style.transitionDelay = '.1s';
+  faqs.forEach((faq, i) => {
+    const item = document.createElement('div');
+    item.className = 'faq-item';
+    item.innerHTML = `<button class="faq-q" aria-expanded="false">${faq.q}<span class="faq-arrow">▾</span></button><div class="faq-a">${faq.a}</div>`;
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => { el.classList.remove('open'); el.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
+      if (!isOpen) { item.classList.add('open'); item.querySelector('.faq-q').setAttribute('aria-expanded','true'); }
+    });
+    (i % 2 === 0 ? col1 : col2).appendChild(item);
+  });
+  wrap.appendChild(col1);
+  wrap.appendChild(col2);
+  rvObs.observe(col1);
+  rvObs.observe(col2);
+})();
+
+/* ---- INIT ---- */
+updateCharCount();
+updatePreview();
+</script>
+</body>
+</html>
