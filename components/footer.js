@@ -75,11 +75,12 @@
         </div>
 
         <div class="footer__bottom">
-          <span>© 2026 TweetPreview. All rights reserved.</span>
+          <span>© 2026 TweetPreview. Made by Waqas Bukhari.</span>
           <div class="footer__bottom-links">
-            <a href="#home">Privacy Policy</a>
-            <a href="#home">Terms of Service</a>
-            <a href="#home">Contact</a>
+            <a href="privacy">Privacy Policy</a>
+            <a href="terms">Terms of Service</a>
+            <a href="contact">Contact</a>
+            <a href="about">About</a>
           </div>
         </div>
       </div>
