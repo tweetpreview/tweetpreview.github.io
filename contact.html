@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us – TweetPreview</title>
+
+  <meta name="description" content="Have questions or feedback? Get in touch with the TweetPreview team. We are here to help you with your social media previewing needs." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tweetpreview.github.io/contact" />  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .contact-content {
+      max-width: 800px;
+      margin: 140px auto 100px;
+      text-align: center;
+    }
+    .contact-content h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+    .contact-content p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: var(--radius);
+      transition: border-color var(--transition);
+    }
+    .contact-card:hover {
+      border-color: var(--twitter);
+    }
+    .email-link {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      display: block;
+      margin-top: 10px;
+      transition: color var(--transition);
+    }
+    .email-link:hover {
+      color: var(--twitter);
+    }
+    .contact-label {
+      color: var(--twitter);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-root"></div>
+
+  <main class="container">
+    <div class="contact-content">
+      <span class="section-label">Get in Touch</span>
+      <h1>Contact Us</h1>
+      <p>Have a question, feedback, or a feature request? We'd love to hear from you. Reach out and we'll get back to you as soon as possible.</p>
+
+      <div class="contact-card">
+        <span class="contact-label">Email Support</span>
+        <a href="mailto:nolushac@gmail.com" class="email-link">nolushac@gmail.com</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="components/header.js"></script>
+  <script src="components/footer.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
