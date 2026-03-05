@@ -38,11 +38,11 @@
             <h4>Preview Tools</h4>
             <ul class="footer__links">
               <li><a href="#preview-tool">Twitter / X Preview</a></li>
-              <li><a href="#preview-tool">Facebook Preview</a></li>
-              <li><a href="#preview-tool">LinkedIn Preview</a></li>
-              <li><a href="#preview-tool">Instagram Preview</a></li>
-              <li><a href="#preview-tool">TikTok Preview</a></li>
-              <li><a href="#preview-tool">YouTube Preview</a></li>
+              <li><a href="fb-post">Facebook Preview</a></li>
+              <li><a href="linkedin-post">LinkedIn Preview</a></li>
+              <li><a href="instagram-feed">Instagram Preview</a></li>
+              <li><a href="tiktok-video">TikTok Preview</a></li>
+              <li><a href="youtube-video">YouTube Preview</a></li>
             </ul>
           </div>
 
@@ -53,9 +53,7 @@
               <li><a href="#how">How It Works</a></li>
               <li><a href="#features">Features</a></li>
               <li><a href="#faq">FAQ</a></li>
-              <li><a href="#home">Blog</a></li>
-              <li><a href="#home">Changelog</a></li>
-              <li><a href="#home">Roadmap</a></li>
+              <li><a href="blog">Blog</a></li>              
             </ul>
           </div>
 
